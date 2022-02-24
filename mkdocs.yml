@@ -1,0 +1,33 @@
+site_name: Gufo Labs Loader
+copyright: "&copy; 2022, Gufo Labs"
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  # Usage
+  - Reference: reference.md
+  # Examples
+  #  Contributing: contributing.md
+  - Changes: changes.md
+  #Licence: licence.md
+  # Users
+theme:
+  name: material
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          rendering:
+            show_source: false
+      watch:
+        - src/gufo_loader
+markdown_extensions:
+  - toc:
+      permalink: True
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: True
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
