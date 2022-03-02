@@ -8,7 +8,7 @@ on:
       - "docs/**"
       - "examples/**"
     branches:
-      - main
+      - master
 jobs:
   build-push:
     name: "Build & Push Docs"
