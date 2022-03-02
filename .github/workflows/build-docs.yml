@@ -1,0 +1,40 @@
+name: Build Docs
+env:
+  PIP_CACHE_DIR: .pip
+on:
+  push:
+    paths:
+      - "docs/**"
+      - "examples/**"
+    branches:
+      - main
+jobs:
+  build-push:
+    name: "Build & Push Docs"
+    runs-on: ubuntu-20.04
+    steps:
+      # Checkout source code
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Cache dependencies
+      - name: Cache Dependencies
+        uses: actions/cache@v2
+        with:
+          path: ./.pip
+          key: ${{ runner.os }}-modules-${{ hashFiles('./.requirements/docs.txt') }}
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: |
+          pip install -IU -r ./.requirements/docs.txt
+
+      # Build documentationn
+      - name: Build Docs
+        run: |
+          mkdocs build --strict
+
+      # Test
+      - name: Test
+        run: |
+          ls -l dist/docs/

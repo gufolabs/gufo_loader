@@ -13,6 +13,6 @@ $ python -m myapp add 1 2
 
 We'll learn 3 possible implementations, each with its own strong and weak sides:
 
-* [Subclasses of the given class](examples/subclass.md).
-* [Classes sharing the protocol](examples/protocol.md).
-* [Singleton instances of the given class](examples/singleton.md).
+* [Subclasses of the given class](subclass.md).
+* [Classes sharing the protocol](protocol.md).
+* [Singleton instances of the given class](singleton.md).

@@ -1,5 +1,6 @@
 site_name: Gufo Labs Loader
 copyright: "&copy; 2022, Gufo Labs"
+site_dir: dist/docs/
 nav:
   - Home: index.md
   - Installation: installation.md

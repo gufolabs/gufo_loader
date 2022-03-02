@@ -1,0 +1,3 @@
+# mkdocs requirements
+mkdocs-material==8.2.1
+mkdocstrings==0.18.0
