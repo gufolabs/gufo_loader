@@ -16,7 +16,7 @@ from gufo_loader import Loader
 
 ## Upgrading
 
-To upgrate existing Gufo Loader installation use pip
+To upgrade existing Gufo Loader installation use pip
 
 ```
 $ pip install --upgrade gufo_loader

@@ -6,55 +6,48 @@
 
 """
 Generic class loader for robust plugin infrastructure.
-Plugins are load from one or many plugin packages and may be defined
-as the subclasses of base classe, singleton instances or class, following
-the protocol.
-
-## Plugins
-
-Plugins are placed in simple python modules containing exactly one
-*plugin*. Each plugin is placed in its own python module.
-*Plugin* is the python item depending on loader initialization type.
-
-Items may be:
-
-* *Instances* of given base class: singletone scheme, when the plugin class
-  is derived from common base class, then the singleton instance
-  is created within plugin module.
-* *Subclasses* of given base class: Plugin classes are derived from base class.
-* Classes matching the *Protocol*: Classes may not have common ancestor but
-  must contain common set of methods called the *Protocol*.
-
-## Plugin packages
-
-Plugin modules are groupped into *plugin packages*. *Plugin packages* are
-plain python packages, i.e. the separate directories having empty `__init__.py`
-file.
-
-One or more plugin packages may be passed to loader.
+Loader delivers plugins from one or many plugin packages.
 
 ## Loader
 
-Loader is the _dict_-like singleton providing following services:
+Loader is the _dict_-like singleton providing the following services:
 
-* plugin innitialization and fetching
-* plugin enumeration
+* plugin initialization and fetching.
+* plugins enumeration.
 
-Plugins are not aware of loader at all and do not need any registration process.
-Loaders are lazy by nature, meaning the plugin will be imported and initialized
-just in time when it been requested.
+Plugins are not dependent on the loader and do not need any registration
+process. The loaders are lazy by nature, meaning the plugin will be imported 
+and initialized just in time when the user code requests the plugin.
+
+## Plugins
+
+Plugins are named entities dedicated to the given task. Each plugin
+is defined in its python module. Depending on the loader settings
+plugins can be:
+
+* *Instances*: Singleton instances having the class as the ancestor.
+* *Subclasses*: Classes having the common ancestor.
+* *Protocols*: Classes following the set of methods.
+
+## Plugin Packages
+
+Plugin packages are plain Python packages: the directory containing
+python files with plugins and the empty `__init__.py` file.
+
+Plugin name must match the module name. For example, module
+`my_plugin.py` will define the plugin `my_plugin`.
 
 Examples:
 
-    Plugins as the subclasses
+    Plugins as the subclasses:
 
         loader = Loader[Type[BasePlugin]](base="myproject.plugins")
 
-    Plugins as the singletones
+    Plugins as the singletones:
 
         loader = Loader[BasePlugin](base="myproject.plugins")
 
-    Plugins as the protocols
+    Plugins as the protocols:
 
         loader = Loader[MyProtocol](base="myproject.plugins")
 """

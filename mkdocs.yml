@@ -3,12 +3,16 @@ copyright: "&copy; 2022, Gufo Labs"
 nav:
   - Home: index.md
   - Installation: installation.md
-  # Usage
   - Reference: reference.md
-  # Examples
+  - Examples:
+      - Overview: examples/index.md
+      - Subclass Scheme: examples/subclass.md
+      - Protocol Scheme: examples/protocol.md
+      - Singleton Scheme: examples/singleton.md
   #  Contributing: contributing.md
+  # - FAQ: faq.md
   - Changes: changes.md
-  #Licence: licence.md
+  - License: license.md
   # Users
 theme:
   name: material
@@ -22,6 +26,7 @@ plugins:
             show_source: false
       watch:
         - src/gufo_loader
+        - examples/
 markdown_extensions:
   - toc:
       permalink: True
