@@ -1,5 +1,5 @@
 # Changes
 
-## master (upcoming release)
+## 1.0.0
 
 Initial implementation.
