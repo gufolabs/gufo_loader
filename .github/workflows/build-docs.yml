@@ -34,4 +34,4 @@ jobs:
       # Build documentationn
       - name: Build & Deploy Docs
         run: |
-          mkdocs gh-deploy --strict
+          mkdocs gh-deploy --strict --force

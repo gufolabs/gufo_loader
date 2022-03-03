@@ -9,9 +9,11 @@
 ![Sponsors](https://img.shields.io/github/sponsors/gufolabs)
 
 ---
+
 **Documentation**: [https://docs.gufolabs.com/gufo_loader/](https://docs.gufolabs.com/gufo_loader/)
 
 **Source Code**: [https://github.com/gufolabs/gufo_loader/](https://github.com/gufolabs/gufo_loader/)
+
 ---
 
 Loader delivers plugins from one or many plugin packages.
