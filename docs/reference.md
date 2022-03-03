@@ -1,3 +1,3 @@
 # Reference
 
-::: src.gufo_loader
+::: src.gufo.loader

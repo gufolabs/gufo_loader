@@ -9,7 +9,7 @@
 import pytest
 
 # Gufo Labs modules
-from gufo_loader import Loader
+from gufo.loader import Loader
 from .singleton.base import BasePlugin
 
 PLUGIN_BASES = ["tests.singleton.primary", "tests.singleton.secondary"]

@@ -10,8 +10,8 @@ nav:
       - Subclass Scheme: examples/subclass.md
       - Protocol Scheme: examples/protocol.md
       - Singleton Scheme: examples/singleton.md
-  #  Contributing: contributing.md
-  # - FAQ: faq.md
+  # Contributing: contributing.md
+  - FAQ: faq.md
   - Changes: changes.md
   - License: license.md
   # Users
@@ -26,7 +26,7 @@ plugins:
           rendering:
             show_source: false
       watch:
-        - src/gufo_loader
+        - src/gufo/
         - examples/
 markdown_extensions:
   - toc:

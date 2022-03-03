@@ -11,7 +11,7 @@ $ pip install gufo_loader
 To check the installation just import the module
 
 ```python
-from gufo_loader import Loader
+from gufo.loader import Loader
 ```
 
 ## Upgrading

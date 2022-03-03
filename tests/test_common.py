@@ -12,7 +12,7 @@ from typing import Type
 import pytest
 
 # Gufo Labs modules
-from gufo_loader import Loader
+from gufo.loader import Loader
 from .subclass.base import BasePlugin
 
 PLUGIN_BASES = ["tests.subclass.primary", "tests.subclass.secondary"]

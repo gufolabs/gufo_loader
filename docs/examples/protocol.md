@@ -123,7 +123,7 @@ the protocol type is the `PluginProtocol`. We'd placed the type into
 the brackets just after the `Loader`.
 
 After defining the plugin's type, we need to initialize the loader itself.
-Loader has several initialization parameters, see [Reference](../reference.md#src.gufo_loader.Loader)
+Loader has several initialization parameters, see [Reference](../reference.md#src.gufo.loader.Loader)
 for details. Here we consider our plugins will be in `plugins` folder of our applications.
 
 ``` py title="__main__.py" linenums="1" hl_lines="8"

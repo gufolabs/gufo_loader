@@ -1,6 +1,6 @@
 import sys
 from typing import Type
-from gufo_loader import Loader
+from gufo.loader import Loader
 from .base import BasePlugin
 
 loader = Loader[Type[BasePlugin]](base="myapp.plugins")

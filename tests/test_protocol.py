@@ -12,7 +12,7 @@ from typing import Type
 import pytest
 
 # Gufo Labs modules
-from gufo_loader import Loader
+from gufo.loader import Loader
 from .protocol.base import Named
 
 PLUGIN_BASES = ["tests.protocol.primary", "tests.protocol.secondary"]
