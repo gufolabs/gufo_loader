@@ -6,4 +6,4 @@
 # ---------------------------------------------------------------------
 
 
-from .c import CPlugin
+from .c import CPlugin  # noqa

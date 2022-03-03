@@ -5,4 +5,4 @@
 # Copyright (C) 2022, Gufo Labs
 # ---------------------------------------------------------------------
 
-from .c import c_singleton
+from .c import c_singleton  # noqa

@@ -5,9 +5,6 @@
 # Copyright (C) 2022, Gufo Labs
 # ---------------------------------------------------------------------
 
-# Python modules
-from typing import Type
-
 # Third-party modules
 import pytest
 

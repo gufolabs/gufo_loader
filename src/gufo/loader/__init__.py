@@ -16,7 +16,7 @@ Loader is the _dict_-like singleton providing the following services:
 * plugins enumeration.
 
 Plugins are not dependent on the loader and do not need any registration
-process. The loaders are lazy by nature, meaning the plugin will be imported 
+process. The loaders are lazy by nature, meaning the plugin will be imported
 and initialized just in time when the user code requests the plugin.
 
 ## Plugins
