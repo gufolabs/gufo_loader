@@ -32,11 +32,6 @@ jobs:
           pip install -IU -r ./.requirements/docs.txt
 
       # Build documentationn
-      - name: Build Docs
+      - name: Build & Deploy Docs
         run: |
-          mkdocs build --strict
-
-      # Test
-      - name: Test
-        run: |
-          ls -l dist/docs/
+          mkdocs gh-deploy --strict
