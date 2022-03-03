@@ -1,6 +1,6 @@
 # Gufo Labs Loader
 
-Generic class loader for robust plugin infrastructure.
+Generic Python class loader for robust plugin infrastructure.
 Loader delivers plugins from one or many plugin packages.
 
 ## Loader

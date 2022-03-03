@@ -5,7 +5,7 @@
 # ---------------------------------------------------------------------
 
 """
-Generic class loader for robust plugin infrastructure.
+Generic python class loader for robust plugin infrastructure.
 Loader delivers plugins from one or many plugin packages.
 
 ## Loader

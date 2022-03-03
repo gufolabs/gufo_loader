@@ -1,0 +1,51 @@
+name: Run Tests
+env:
+  PIP_CACHE_DIR: .pip
+  PYTHONPATH: src
+on:
+  push:
+    paths:
+      - ".github/workflows/py-tests.yml"
+      - "examples/**"
+      - "src/**"
+      - "tests/**"
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: true
+      matrix:
+        # Run on all supported versions
+        python-version: [3.8, 3.9, 3.10]
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Set Up Python {{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # Cache dependencies
+      - name: Cache Dependencies
+        uses: actions/cache@v2
+        with:
+          path: ./.pip
+          key: ${{ runner.os }}-tests-{{ matrix.python-version }}-${{ hashFiles('./.requirements/lint.txt') }}-${{ hashFiles('./.requirements/test.txt') }}
+
+      - name: Display Python Version
+        run: python -c "import sys; print(sys.version)"
+
+      - name: Upgrade Pip
+        run: python -m pip install --upgrade pip
+
+      - name: Install Dependencies
+        run: pip -IU -r ./.requirements/lint.txt -r ./.requirements/test.txt
+
+      - name: Run Tests
+        run: pytest -v
