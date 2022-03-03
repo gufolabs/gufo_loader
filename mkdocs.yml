@@ -1,6 +1,11 @@
 site_name: Gufo Labs Loader
+site_description: Gufo Labs Loader Documentation
+site_author: Gufo Labs
+site_url: "https://docs.gufolabs.com/gufo_loader/"
 copyright: "&copy; 2022, Gufo Labs"
 site_dir: dist/docs/
+repo_url: https://github.com/gufolabs/gufo_loader/
+repo_name: GitHub
 nav:
   - Home: index.md
   - Installation: installation.md

@@ -44,6 +44,9 @@ jobs:
       - name: Upgrade Pip
         run: python -m pip install --upgrade pip
 
+      - name: Upgrade Build
+        run: pip install --upgrade build
+
       - name: Install Dependencies
         run: pip install -IU -r ./.requirements/lint.txt -r ./.requirements/test.txt
 
@@ -58,3 +61,9 @@ jobs:
 
       - name: Run Tests
         run: pytest -v
+
+      - name: Try Build
+        run: python -m build --sdist --wheel --outdir dist/
+
+      - name: Show Build Result
+        run: ls -l dist/
