@@ -47,5 +47,14 @@ jobs:
       - name: Install Dependencies
         run: pip install -IU -r ./.requirements/lint.txt -r ./.requirements/test.txt
 
+      - name: Check Formatting
+        run: black --check examples/ src/ tests/
+
+      - name: Check Flake8
+        run: flake8 examples/ src/ tests/
+
+      - name: Check Mypy
+        run: mypy --strict src/
+
       - name: Run Tests
         run: pytest -v
