@@ -45,7 +45,7 @@ jobs:
         run: python -m pip install --upgrade pip
 
       - name: Install Dependencies
-        run: pip -IU -r ./.requirements/lint.txt -r ./.requirements/test.txt
+        run: pip install -IU -r ./.requirements/lint.txt -r ./.requirements/test.txt
 
       - name: Run Tests
         run: pytest -v
