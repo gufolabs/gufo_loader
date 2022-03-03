@@ -9,6 +9,7 @@ on:
       - "examples/**"
       - "src/**"
       - "tests/**"
+      - "setup.cfg"
     branches:
       - master
   pull_request:
