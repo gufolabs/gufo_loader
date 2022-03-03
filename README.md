@@ -1,5 +1,11 @@
 # Gufo Labs Loader
 
+[![PyPi version](https://img.shields.io/pypi/v/gufo_loader.svg)](https://pypi.python.org/pypi/gufo_loader/)
+![Python Versions](https://img.shields.io/pypi/pyversions/gufo_loader)
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+![Build](https://img.shields.io/github/workflow/status/gufolabs/gufo_loader/Run%20Tests/master)
+[![](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
+
 Generic Python class loader for robust plugin infrastructure.
 Loader delivers plugins from one or many plugin packages.
 
