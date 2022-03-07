@@ -11,7 +11,7 @@ were proven at the project, named "the Owl".
 
     What is "Gufo Labs"?
 
-*Gufo Labs* is the Milan-based company specialized on
+[Gufo Labs](https://gufolabs.com/) is the Milan-based company specialized on
 network and IT consulting, and on software research.
 
     Why I shouldn't use the plain __import__ function?
