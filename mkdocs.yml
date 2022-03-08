@@ -16,6 +16,10 @@ nav:
       - Protocol Scheme: examples/protocol.md
       - Singleton Scheme: examples/singleton.md
   # Contributing: contributing.md
+  - Developers' Guide:
+      - Code Base: codebase.md
+      - Contributing Guide: CONTRIBUTING.md
+      - Code of Conduct: CODE_OF_CONDUCT.md
   - FAQ: faq.md
   - Changes: changes.md
   - License: license.md
@@ -23,6 +27,7 @@ nav:
 theme:
   name: material
   logo: assets/logo.png
+  favicon: assets/logo.png
 plugins:
   - search
   - mkdocstrings:
