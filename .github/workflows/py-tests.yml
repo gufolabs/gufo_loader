@@ -60,7 +60,10 @@ jobs:
         run: mypy --strict src/
 
       - name: Run Tests
-        run: pytest -v
+        run: coverage run -m pytest -v
+
+      - name: Coverage Report
+        run: coverage report
 
   publish:
     runs-on: ubuntu-20.04
