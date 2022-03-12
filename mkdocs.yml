@@ -15,8 +15,10 @@ nav:
       - Subclass Scheme: examples/subclass.md
       - Protocol Scheme: examples/protocol.md
       - Singleton Scheme: examples/singleton.md
-  # Contributing: contributing.md
   - Developers' Guide:
+      - Developer's Environment: environment.md
+      - Building and Testing: testing.md
+      - Code Quality: codequality.md
       - Code Base: codebase.md
       - Contributing Guide: CONTRIBUTING.md
       - Code of Conduct: CODE_OF_CONDUCT.md
