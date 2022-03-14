@@ -257,6 +257,7 @@ class Loader(Generic[T]):
 
         Args:
             name: Name of plugin.
+            default: Default value, if plugin is missed.
 
         Returns:
             Plugin item depending on generic type or default value.
