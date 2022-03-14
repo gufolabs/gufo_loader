@@ -1,6 +1,7 @@
 name: Build Docs
 env:
   PIP_CACHE_DIR: .pip
+  PYTHONPATH: src
 on:
   push:
     paths:
