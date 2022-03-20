@@ -1,4 +1,4 @@
-# Loader Examples
+# Gufo Loader Examples
 
 Consider the practical task. Let's write the simple integer calculator application.
 The application must be called from the command line, accept the operation name and two

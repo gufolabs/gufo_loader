@@ -14,6 +14,16 @@ were proven at the project, named "the Owl".
 [Gufo Labs](https://gufolabs.com/) is the Milan-based company specialized on
 network and IT consulting, and on software research.
 
+    What is "Gufo Stack"?
+
+We've extracted core components behind the [NOC](https://getnoc.com/) 
+and released them as independent packages, available under the terms 
+of the 3-clause BSD license. Our software shares common code quality standards 
+and is battle-proven under the high load. We hope our key components will help 
+the engineers and the developers to build reliable networks and robust network 
+management software. 
+See [more for details](https://gufolabs.com/products/gufo-stack/).
+
     Why I shouldn't use the plain __import__ function?
 
 You can use `__import__` function, but you need to add a boilerplate
