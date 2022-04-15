@@ -6,6 +6,7 @@ on:
   push:
     paths:
       - ".github/workflows/py-tests.yml"
+      - ".requirements/*.txt"
       - "examples/**"
       - "src/**"
       - "tests/**"
