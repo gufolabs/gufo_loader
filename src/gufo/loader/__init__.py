@@ -50,6 +50,9 @@ Examples:
     Plugins as the protocols:
 
         loader = Loader[MyProtocol](base="myproject.plugins")
+
+Attributes:
+    __version__: Current version
 """
 
 # Python modules
@@ -70,6 +73,7 @@ from threading import Lock
 import inspect
 from pkgutil import iter_modules
 
+__version__: str = "1.0.1"
 T = TypeVar("T")
 
 
