@@ -1,0 +1,1218 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Gufo Labs Loader Documentation">
+      
+      
+        <meta name="author" content="Gufo Labs">
+      
+      
+        <link rel="canonical" href="https://docs.gufolabs.com/gufo_loader/reference/">
+      
+      <link rel="icon" href="../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.1">
+    
+    
+      
+        <title>Reference - Gufo Labs Loader</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e8d9bf0c.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Gufo Labs Loader" class="md-header__button md-logo" aria-label="Gufo Labs Loader" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Gufo Labs Loader
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/gufolabs/gufo_loader/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Gufo Labs Loader" class="md-nav__button md-logo" aria-label="Gufo Labs Loader" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    Gufo Labs Loader
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/gufolabs/gufo_loader/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Reference
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gufo.loader" class="md-nav__link">
+    gufo.loader
+  </a>
+  
+    <nav class="md-nav" aria-label="gufo.loader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gufo.loader--loader" class="md-nav__link">
+    Loader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gufo.loader--plugins" class="md-nav__link">
+    Plugins
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gufo.loader--plugin-packages" class="md-nav__link">
+    Plugin Packages
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gufo.loader.Loader" class="md-nav__link">
+    Loader
+  </a>
+  
+    <nav class="md-nav" aria-label="Loader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gufo.loader.Loader.__getitem__" class="md-nav__link">
+    __getitem__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gufo.loader.Loader.get" class="md-nav__link">
+    get()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gufo.loader.Loader.items" class="md-nav__link">
+    items()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gufo.loader.Loader.keys" class="md-nav__link">
+    keys()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gufo.loader.Loader.values" class="md-nav__link">
+    values()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Examples" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/subclass/" class="md-nav__link">
+        Subclass Scheme
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/protocol/" class="md-nav__link">
+        Protocol Scheme
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/singleton/" class="md-nav__link">
+        Singleton Scheme
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Developers' Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Developers' Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Developers' Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment/" class="md-nav__link">
+        Developer's Environment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        Building and Testing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../codequality/" class="md-nav__link">
+        Code Quality
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../codebase/" class="md-nav__link">
+        Code Base
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CONTRIBUTING/" class="md-nav__link">
+        Contributing Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CODE_OF_CONDUCT/" class="md-nav__link">
+        Code of Conduct
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changes/" class="md-nav__link">
+        Changes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gufo.loader" class="md-nav__link">
+    gufo.loader
+  </a>
+  
+    <nav class="md-nav" aria-label="gufo.loader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gufo.loader--loader" class="md-nav__link">
+    Loader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gufo.loader--plugins" class="md-nav__link">
+    Plugins
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gufo.loader--plugin-packages" class="md-nav__link">
+    Plugin Packages
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gufo.loader.Loader" class="md-nav__link">
+    Loader
+  </a>
+  
+    <nav class="md-nav" aria-label="Loader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gufo.loader.Loader.__getitem__" class="md-nav__link">
+    __getitem__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gufo.loader.Loader.get" class="md-nav__link">
+    get()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gufo.loader.Loader.items" class="md-nav__link">
+    items()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gufo.loader.Loader.keys" class="md-nav__link">
+    keys()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gufo.loader.Loader.values" class="md-nav__link">
+    values()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/gufolabs/gufo_loader/edit/master/docs/reference.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+
+<h1 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h1>
+
+
+  <div class="doc doc-object doc-module">
+
+<a id="gufo.loader"></a>
+    <div class="doc doc-contents first">
+
+      <p>Generic python class loader for robust plugin infrastructure.
+Loader delivers plugins from one or many plugin packages.</p>
+<h3 id="gufo.loader--loader">Loader<a class="headerlink" href="#gufo.loader--loader" title="Permanent link">&para;</a></h3>
+<p>Loader is the <em>dict</em>-like singleton providing the following services:</p>
+<ul>
+<li>plugin initialization and fetching.</li>
+<li>plugins enumeration.</li>
+</ul>
+<p>Plugins are not dependent on the loader and do not need any registration
+process. The loaders are lazy by nature, meaning the plugin will be imported
+and initialized just in time when the user code requests the plugin.</p>
+<h3 id="gufo.loader--plugins">Plugins<a class="headerlink" href="#gufo.loader--plugins" title="Permanent link">&para;</a></h3>
+<p>Plugins are named entities dedicated to the given task. Each plugin
+is defined in its python module. Depending on the loader settings
+plugins can be:</p>
+<ul>
+<li><em>Instances</em>: Singleton instances having the class as the ancestor.</li>
+<li><em>Subclasses</em>: Classes having the common ancestor.</li>
+<li><em>Protocols</em>: Classes following the set of methods.</li>
+</ul>
+<h3 id="gufo.loader--plugin-packages">Plugin Packages<a class="headerlink" href="#gufo.loader--plugin-packages" title="Permanent link">&para;</a></h3>
+<p>Plugin packages are plain Python packages: the directory containing
+python files with plugins and the empty <code>__init__.py</code> file.</p>
+<p>Plugin name must match the module name. For example, module
+<code>my_plugin.py</code> will define the plugin <code>my_plugin</code>.</p>
+
+<p><strong>Examples:</strong></p>
+    <p>Plugins as the subclasses:</p>
+<div class="highlight"><pre><span></span><code>loader = Loader[Type[BasePlugin]](base=&quot;myproject.plugins&quot;)
+</code></pre></div>
+<p>Plugins as the singletones:</p>
+<div class="highlight"><pre><span></span><code>loader = Loader[BasePlugin](base=&quot;myproject.plugins&quot;)
+</code></pre></div>
+<p>Plugins as the protocols:</p>
+<div class="highlight"><pre><span></span><code>loader = Loader[MyProtocol](base=&quot;myproject.plugins&quot;)
+</code></pre></div>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>__version__</code></td>
+        <td><code>str</code></td>
+        <td><p>Current version</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h2 id="gufo.loader.Loader" class="doc doc-heading">
+        <code>
+Loader            (<span title="typing.Generic">Generic</span>)
+        </code>
+
+
+
+<a href="#gufo.loader.Loader" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Generic loader. Used as singleton instantiated from generic.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>base</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Plugins package name.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>bases</code></td>
+        <td><code>Optional[Iterable[str]]</code></td>
+        <td><p>Iterable of plugin package names.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>strict</code></td>
+        <td><code>bool</code></td>
+        <td><p>Ignore missed plugin packages if set to False, Fail otherwise.</p></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
+        <td><code>exclude</code></td>
+        <td><code>Optional[Iterable[str]]</code></td>
+        <td><p>Iterable of names to be excluded from plugins lists.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>      <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>base</code> and <code>bases</code> parameters are mutually exclusive.
+Either <code>base</code> or <code>bases</code> must be provided.</p>
+</div>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="gufo.loader.Loader.__getitem__" class="doc doc-heading">
+<code class="highlight language-python"><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+<a href="#gufo.loader.Loader.__getitem__" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Get plugin by name. Raise <code>KeyError</code> if plugin is missed.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>name</code></td>
+        <td><code>str</code></td>
+        <td><p>Name of plugin.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>~T</code></td>
+      <td><p>Plugin item depending on generic type.</p></td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+
+  </div>
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="gufo.loader.Loader.get" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+<a href="#gufo.loader.Loader.get" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Get plugin by name. Return <code>default</code> value if plugin is missed.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>name</code></td>
+        <td><code>str</code></td>
+        <td><p>Name of plugin.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>default</code></td>
+        <td><code>Optional[~T]</code></td>
+        <td><p>Default value, if plugin is missed.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Optional[~T]</code></td>
+      <td><p>Plugin item depending on generic type or default value.</p></td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="gufo.loader.Loader.items" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">items</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+
+<a href="#gufo.loader.Loader.items" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Iterate the (<code>name</code>, <code>item</code>) tuples for all plugin items.</p>
+
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Iterable[Tuple[str, ~T]]</code></td>
+      <td><p>Iterable of tuples of (<code>name</code>, <code>item</code>)</p></td>
+    </tr>
+  </tbody>
+</table>      <div class="admonition none">
+<p class="admonition-title">None</p>
+<p><code>items()</code> will force plugin module loading and instantination.</p>
+</div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="gufo.loader.Loader.keys" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+
+<a href="#gufo.loader.Loader.keys" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Iterable yielding all existing plugin names.</p>
+
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Iterable[str]</code></td>
+      <td><p>Iterable of strings with all plugin names.</p></td>
+    </tr>
+  </tbody>
+</table>      <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>keys()</code> do not force plugin module loading and instantination.</p>
+</div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="gufo.loader.Loader.values" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">values</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+
+<a href="#gufo.loader.Loader.values" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Iterate all found plugin items.</p>
+
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Iterable[~T]</code></td>
+      <td><p>Iterable of plugin items.</p></td>
+    </tr>
+  </tbody>
+</table>      <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>values()</code> will force plugin module loading and instantination.</p>
+</div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Installation
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../examples/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Overview
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2022, Gufo Labs
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.bd0b6b67.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.8aa65030.min.js"></script>
+      
+    
+  </body>
+</html>
