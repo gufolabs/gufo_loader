@@ -36,7 +36,7 @@ plugins:
       default_handler: python
       handlers:
         python:
-          rendering:
+          options:
             show_source: false
       watch:
         - src/gufo/
