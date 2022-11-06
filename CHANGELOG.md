@@ -8,6 +8,11 @@ To see unreleased changes, please see the [CHANGELOG on the main branch guide](h
 
 ### [Unreleased]
 
+### Added
+
+* Add CITATION.cff
+* Developer's Common Tasks
+
 ### Changed
 
 * Move CHANGELOG.md to the project root
@@ -15,6 +20,7 @@ To see unreleased changes, please see the [CHANGELOG on the main branch guide](h
 ### Infrastructure
 
 * Use Python 3.11 for dev container
+* Use mkdocs-material 3.5.8
 
 ## 1.0.1 - 2022-04-15
 
