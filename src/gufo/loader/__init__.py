@@ -73,7 +73,7 @@ from threading import Lock
 import inspect
 from pkgutil import iter_modules
 
-__version__: str = "1.0.1"
+__version__: str = "1.0.2"
 T = TypeVar("T")
 
 
