@@ -6,6 +6,7 @@ syntax: glob
 !.requirements/
 *.pyc
 *.pyo
+build/
 dist/
 *.egg-info/
 *.dist-info/
