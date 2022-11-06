@@ -12,6 +12,10 @@ To see unreleased changes, please see the [CHANGELOG on the main branch guide](h
 
 * Move CHANGELOG.md to the project root
 
+### Infrastructure
+
+* Use Python 3.11 for dev container
+
 ## 1.0.1 - 2022-04-15
 
 ### Added

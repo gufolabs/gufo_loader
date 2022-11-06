@@ -1,4 +1,4 @@
-FROM python:3.10-slim-bullseye AS dev
+FROM python:3.11-slim-bullseye AS dev
 COPY .requirements /tmp
 RUN \
     apt-get update \
