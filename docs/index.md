@@ -1,6 +1,6 @@
-# Gufo Labs Loader Documentation
+# Gufo Loader Documentation
 
-*Gufo Labs Loader* is the flexible and robust foundation
+*Gufo Loader* is the flexible and robust foundation
 for Python plugins architecture.
 
 ## Software Evolution
