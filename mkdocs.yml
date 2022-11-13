@@ -1,5 +1,5 @@
-site_name: Gufo Labs Loader
-site_description: Gufo Labs Loader Documentation
+site_name: Gufo Loader
+site_description: Gufo Loader Documentation
 site_author: Gufo Labs
 site_url: "https://docs.gufolabs.com/gufo_loader/"
 copyright: "&copy; 2022, Gufo Labs"
@@ -31,6 +31,10 @@ theme:
   name: material
   logo: assets/logo.png
   favicon: assets/logo.png
+watch:
+  - docs/
+  - src/gufo/
+  - examples/
 plugins:
   - search
   - mkdocstrings:
@@ -39,9 +43,6 @@ plugins:
         python:
           options:
             show_source: false
-      watch:
-        - src/gufo/
-        - examples/
 markdown_extensions:
   - toc:
       permalink: True
@@ -51,3 +52,5 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+  - pymdownx.tasklist:
+      clickable_checkbox: true
