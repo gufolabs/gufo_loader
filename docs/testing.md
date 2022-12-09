@@ -84,7 +84,7 @@ $ coverage report
 To show line-by-line coverage:
 
 ```
-$ coverage html -d dist/coverage
+$ coverage html
 ```
 
 Then open `dist/coverage/index.html` file in your browser.

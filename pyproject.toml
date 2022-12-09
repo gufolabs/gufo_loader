@@ -11,3 +11,6 @@ target-version = ['py39']
 
 [tool.coverage.run]
 omit = ["*tests*", "*examples*"]
+
+[tool.coverage.html]
+directory = "dist/coverage"
