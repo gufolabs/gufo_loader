@@ -25,7 +25,7 @@ body:
         should be self-contained, i.e., can be copy-pasted into the Python
         interpreter or run as-is via `python myproblem.py`.
       placeholder: |
-        from gufo.ping import Ping
+        from gufo.loader import Loader
         << your code here >>
       render: python
     validations:
