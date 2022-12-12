@@ -12,6 +12,13 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 
 * `py.typed` file for PEP-561 compatibility
 
+### Infrastructure
+
+* Use `actions/checkout@v3`
+* Use `actions/cache@v3`
+* Project structure tests
+* CI workflows tests
+
 ## 1.0.2 - 2022-11-06
 
 ### Added
