@@ -6,11 +6,11 @@
 # ---------------------------------------------------------------------
 
 # Python modules
-from dataclasses import dataclass
 import inspect
 import os
 import sys
-from typing import Iterable, Tuple
+from dataclasses import dataclass
+from typing import Iterable
 
 # Third-party modules
 import pytest
@@ -73,5 +73,7 @@ def _iter_actions() -> Iterable[Action]:
 
 @pytest.mark.parametrize("action", list(_iter_actions()), ids=action_label)
 def test_actions(action: Action) -> None:
-    msg = f"{action.path}: {action.job}/{action.step}: {action.action}@{action.expected} required (@{action.version} used)"
+    loc = f"{action.path}: {action.job}/{action.step}"
+    v_exp = f"{action.action}@{action.expected}"
+    msg = f"{loc}: {v_exp} required (@{action.version} used)"
     assert action.version == action.expected, msg
