@@ -23,6 +23,7 @@ nav:
       - Code Base: codebase.md
       - Contributing Guide: CONTRIBUTING.md
       - Code of Conduct: CODE_OF_CONDUCT.md
+  - Supported Standards: standards.md
   - FAQ: faq.md
   - Changelog: CHANGELOG.md
   - License: license.md

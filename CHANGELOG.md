@@ -11,6 +11,7 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 ### Added
 
 * `py.typed` file for PEP-561 compatibility
+* docs: Supported standards
 
 ### Infrastructure
 
