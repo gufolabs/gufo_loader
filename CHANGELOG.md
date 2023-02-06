@@ -19,6 +19,7 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 * Project structure tests
 * CI workflows tests
 * Extend licence copyright years
+* Dockerfile: Use `set -x` to log RUN commands
 
 ## 1.0.2 - 2022-11-06
 

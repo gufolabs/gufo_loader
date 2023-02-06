@@ -1,7 +1,8 @@
 FROM python:3.11-slim-bullseye AS dev
 COPY .requirements /tmp
 RUN \
-    apt-get update \
+    set -x \
+    && apt-get update \
     && apt-get install -y --no-install-recommends git\
     && pip install --upgrade pip\
     && pip install --upgrade build\
