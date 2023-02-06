@@ -1,8 +1,7 @@
 # ---------------------------------------------------------------------
-# Gufo Labs Loader:
-# Named protocol for the protocol tests
+# Gufo Loader: Named protocol for the protocol tests
 # ---------------------------------------------------------------------
-# Copyright (C) 2022, Gufo Labs
+# Copyright (C) 2022-23, Gufo Labs
 # ---------------------------------------------------------------------
 
 from typing import Protocol, runtime_checkable
@@ -10,8 +9,8 @@ from typing import Protocol, runtime_checkable
 
 @runtime_checkable
 class Named(Protocol):
-    def __init__(self):
+    def __init__(self: "Named") -> None:
         ...
 
-    def get_name(self) -> str:
+    def get_name(self: "Named") -> str:
         ...

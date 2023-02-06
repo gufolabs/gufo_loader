@@ -1,8 +1,7 @@
 # ---------------------------------------------------------------------
-# Gufo Labs Loader:
-# c plugin singleton spoiled by decoy singletones and variables
+# Gufo Loader: c plugin singleton spoiled by decoy singletones and variables
 # ---------------------------------------------------------------------
-# Copyright (C) 2022, Gufo Labs
+# Copyright (C) 2022-23, Gufo Labs
 # ---------------------------------------------------------------------
 
 from ..base import BasePlugin
@@ -18,7 +17,7 @@ TRASH_VAR = 1
 class CPlugin(BasePlugin):
     name = "c"
 
-    def get_name(self) -> str:
+    def get_name(self: "CPlugin") -> str:
         return self.name
 
 

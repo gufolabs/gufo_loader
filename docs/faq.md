@@ -29,7 +29,7 @@ See [more for details](https://gufolabs.com/products/gufo-stack/).
 You can use `__import__` function, but you need to add a boilerplate
 code to find the real plugin implementation. Also, you need some kind
 of wrapping to settle the type hinting. And you need to reimplement
-it again and again in every new project. Consider the Gufo Labs Loader
+it again and again in every new project. Consider the *Gufo Loader*
 as the library and the methodology, based on best practices.
 
 > How can I load and initialize all plugins on startup?

@@ -1,5 +1,7 @@
 import sys
+
 from gufo.loader import Loader
+
 from .base import PluginProtocol
 
 loader = Loader[PluginProtocol](base="myapp.plugins")

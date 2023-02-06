@@ -12,6 +12,7 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 
 * `py.typed` file for PEP-561 compatibility
 * docs: Supported standards
+* Loader.__iter__() method.
 
 ## Changed
 
@@ -19,6 +20,7 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 
 ### Infrastructure
 
+* Adopt ruff
 * Use `actions/checkout@v3`
 * Use `actions/cache@v3`
 * Project structure tests

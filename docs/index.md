@@ -53,7 +53,7 @@ as the separate packs.
 
 ## The Loader
 
-*Gufo Labs Loader* is the simple Python library supplied with the best practices.
+*Gufo Loader* is the simple Python library supplied with the best practices.
 Loader managed the Python plugins lifecycle in the clean and sound way. Application
 core may use the Loader to enumerate and load the plugins.
 

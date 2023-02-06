@@ -39,39 +39,39 @@ to be able to check plugins signatures. Do not forget it.
 ```
 Protocols are derived from `Protocol` generic class.
 
-```  py title="base.py" linenums="1" hl_lines="6 7 8"
+```  py title="base.py" linenums="1" hl_lines="6"
 --8<-- "examples/protocol/myapp/base.py"
 ```
 
 Though docstrings are advisory it will help to navigate our code,
 so describe plugin tasks and features.
 
-```  py title="base.py" linenums="1" hl_lines="10"
+```  py title="base.py" linenums="1" hl_lines="8"
 --8<-- "examples/protocol/myapp/base.py"
 ```
 
 Our plugins has no initialization parameters, so we declare plain `__init__` constructor.
 
-```  py title="base.py" linenums="1" hl_lines="11"
+```  py title="base.py" linenums="1" hl_lines="9"
 --8<-- "examples/protocol/myapp/base.py"
 ```
 
 All protocol functions are abstract, so we add `...` operator to skip the implementation.
 
-```  py title="base.py" linenums="1" hl_lines="13"
+```  py title="base.py" linenums="1" hl_lines="11"
 --8<-- "examples/protocol/myapp/base.py"
 ```
 
 Our main function of the plugin, do not to forget to place the proper type hints to allow
 static type checking.
 
-```  py title="base.py" linenums="1" hl_lines="14 15 16"
+```  py title="base.py" linenums="1" hl_lines="12"
 --8<-- "examples/protocol/myapp/base.py"
 ```
 
 The main function of the plugin already should be documented.
 
-```  py title="base.py" linenums="1" hl_lines="17"
+```  py title="base.py" linenums="1" hl_lines="13"
 --8<-- "examples/protocol/myapp/base.py"
 ```
 
@@ -99,19 +99,19 @@ Import `sys` module to parse the CLI argument.
 
     We use `sys.argv` only for demonstration purposes. Use `argsparse` or alternatives
     in real-world applications.
-``` py title="__main__.py" linenums="1" hl_lines="2"
+``` py title="__main__.py" linenums="1" hl_lines="3"
 --8<-- "examples/protocol/myapp/__main__.py"
 ```
 
 Import `Loader` class.
 
-``` py title="__main__.py" linenums="1" hl_lines="3"
+``` py title="__main__.py" linenums="1" hl_lines="5"
 --8<-- "examples/protocol/myapp/__main__.py"
 ```
 
 Import `PluginBase` class to define `Loader` type.
 
-``` py title="__main__.py" linenums="1" hl_lines="5"
+``` py title="__main__.py" linenums="1" hl_lines="7"
 --8<-- "examples/protocol/myapp/__main__.py"
 ```
 
@@ -126,21 +126,21 @@ After defining the plugin's type, we need to initialize the loader itself.
 Loader has several initialization parameters, see [Reference](../reference.md#src.gufo.loader.Loader)
 for details. Here we consider our plugins will be in `plugins` folder of our applications.
 
-``` py title="__main__.py" linenums="1" hl_lines="8"
+``` py title="__main__.py" linenums="1" hl_lines="10"
 --8<-- "examples/protocol/myapp/__main__.py"
 ```
 
 Our `main` function accepts the operation's name and two integer arguments.
 Then it prints the result.
 
-``` py title="__main__.py" linenums="1" hl_lines="9"
+``` py title="__main__.py" linenums="1" hl_lines="11"
 --8<-- "examples/protocol/myapp/__main__.py"
 ```
 
 Loader supports dict-like interface to access the modules. For this example, we will 
 use bracket notation. We use `op` parameter as the plugin name.
 
-``` py title="__main__.py" linenums="1" hl_lines="10"
+``` py title="__main__.py" linenums="1" hl_lines="12"
 --8<-- "examples/protocol/myapp/__main__.py"
 ```
 
@@ -148,20 +148,20 @@ Loader returns the class. We create the instance to show we can use some plugin 
 tasks. We can also define the `execute` method as a `@classmethod` to skip 
 the initialization step.
 
-``` py title="__main__.py" linenums="1" hl_lines="11"
+``` py title="__main__.py" linenums="1" hl_lines="13"
 --8<-- "examples/protocol/myapp/__main__.py"
 ```
 
 Then we call `execute` method of the plugin. Your editor must
 show the `r` variable has the type of `int`
 
-``` py title="__main__.py" linenums="1" hl_lines="12"
+``` py title="__main__.py" linenums="1" hl_lines="14"
 --8<-- "examples/protocol/myapp/__main__.py"
 ```
 
 Then we print the result, and our core function is finally complete.
 
-``` py title="__main__.py" linenums="1" hl_lines="15"
+``` py title="__main__.py" linenums="1" hl_lines="17"
 --8<-- "examples/protocol/myapp/__main__.py"
 ```
 We're extracting our arguments directly from `sys.argv`.

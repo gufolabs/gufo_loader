@@ -1,13 +1,12 @@
 # ---------------------------------------------------------------------
-# Gufo Labs Loader:
-# b plugin
+# Gufo Loader: b plugin
 # ---------------------------------------------------------------------
-# Copyright (C) 2022, Gufo Labs
+# Copyright (C) 2022-23, Gufo Labs
 # ---------------------------------------------------------------------
 
 
 class BPlugin(object):
     name = "b"
 
-    def get_name(self) -> str:
+    def get_name(self: "BPlugin") -> str:
         return self.name

@@ -1,8 +1,7 @@
 # ---------------------------------------------------------------------
-# Gufo Labs Loader:
-# b plugin singleton instance
+# Gufo Loader: b plugin singleton instance
 # ---------------------------------------------------------------------
-# Copyright (C) 2022, Gufo Labs
+# Copyright (C) 2022-23, Gufo Labs
 # ---------------------------------------------------------------------
 
 
@@ -12,7 +11,7 @@ from ..base import BasePlugin
 class BPlugin(BasePlugin):
     name = "b"
 
-    def get_name(self) -> str:
+    def get_name(self: "BPlugin") -> str:
         return self.name
 
 

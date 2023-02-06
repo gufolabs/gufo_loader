@@ -1,8 +1,7 @@
 # ---------------------------------------------------------------------
-# Gufo Labs Loader:
-# Imprort from annother module, must be ignored
+# Gufo Loader: Imprort from annother module, must be ignored
 # ---------------------------------------------------------------------
-# Copyright (C) 2022, Gufo Labs
+# Copyright (C) 2022-23, Gufo Labs
 # ---------------------------------------------------------------------
 
 from .c import c_singleton  # noqa

@@ -1,9 +1,8 @@
 # ---------------------------------------------------------------------
-# Gufo Labs Loader:
-# b plugin singleton instance. Must be overloaded
+# Gufo Loader: b plugin singleton instance. Must be overloaded
 # by primary/b.py
 # ---------------------------------------------------------------------
-# Copyright (C) 2022, Gufo Labs
+# Copyright (C) 2022-23, Gufo Labs
 # ---------------------------------------------------------------------
 
 
@@ -13,7 +12,7 @@ from ..base import BasePlugin
 class BPlugin(BasePlugin):
     name = "b?"
 
-    def get_name(self) -> str:
+    def get_name(self: "BPlugin") -> str:
         return self.name
 
 

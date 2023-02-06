@@ -1,8 +1,7 @@
 # ---------------------------------------------------------------------
-# Gufo Labs Loader:
-# Singleton tests
+# Gufo Loader: Singleton tests
 # ---------------------------------------------------------------------
-# Copyright (C) 2022, Gufo Labs
+# Copyright (C) 2022-23, Gufo Labs
 # ---------------------------------------------------------------------
 
 # Third-party modules
@@ -10,13 +9,15 @@ import pytest
 
 # Gufo Labs modules
 from gufo.loader import Loader
+
 from .singleton.base import BasePlugin
 
 PLUGIN_BASES = ["tests.singleton.primary", "tests.singleton.secondary"]
+LoaderType = Loader[BasePlugin]
 
 
 @pytest.fixture(scope="module")
-def loader():
+def loader() -> LoaderType:
     return Loader[BasePlugin](bases=PLUGIN_BASES)
 
 
@@ -28,7 +29,7 @@ def loader():
         ("c", "c"),
     ],
 )
-def test_getitem(name, expected_name, loader):
+def test_getitem(name: str, expected_name: str, loader: LoaderType) -> None:
     item = loader[name]
     assert isinstance(item, BasePlugin)
     assert item.get_name() == expected_name

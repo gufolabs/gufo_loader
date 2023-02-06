@@ -1,5 +1,7 @@
 import sys
+
 from gufo.loader import Loader
+
 from .base import BasePlugin
 
 loader = Loader[BasePlugin](base="myapp.plugins")

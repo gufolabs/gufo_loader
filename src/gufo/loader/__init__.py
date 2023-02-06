@@ -1,11 +1,12 @@
 # ---------------------------------------------------------------------
-# Gufo Labs Loader
+# Gufo Loader
 # ---------------------------------------------------------------------
-# Copyright (C) 2022, Gufo Labs
+# Copyright (C) 2022-23, Gufo Labs
 # ---------------------------------------------------------------------
 
 """
-Generic python class loader for robust plugin infrastructure.
+Generic Python class loader for robust plugin infrastructure.
+
 Loader delivers plugins from one or many plugin packages.
 
 ## Loader
@@ -37,41 +38,48 @@ python files with plugins and the empty `__init__.py` file.
 Plugin name must match the module name. For example, module
 `my_plugin.py` will define the plugin `my_plugin`.
 
-Examples:
-
+Example:
     Plugins as the subclasses:
 
-        loader = Loader[Type[BasePlugin]](base="myproject.plugins")
+    ``` py
+    loader = Loader[Type[BasePlugin]](base="myproject.plugins")
+    ```
 
+Example:
     Plugins as the singletones:
 
-        loader = Loader[BasePlugin](base="myproject.plugins")
+    ``` py
+    loader = Loader[BasePlugin](base="myproject.plugins")
+    ```
 
+Example:
     Plugins as the protocols:
 
-        loader = Loader[MyProtocol](base="myproject.plugins")
+    ``` py
+    loader = Loader[MyProtocol](base="myproject.plugins")
+    ```
 
 Attributes:
     __version__: Current version
 """
 
 # Python modules
+import inspect
+from pkgutil import iter_modules
+from threading import Lock
 from typing import (
     Any,
-    Tuple,
     Callable,
-    Optional,
-    TypeVar,
-    Generic,
     Dict,
-    Set,
+    Generic,
     Iterable,
+    Optional,
+    Set,
+    Tuple,
+    TypeVar,
     cast,
     get_args,
 )
-from threading import Lock
-import inspect
-from pkgutil import iter_modules
 
 __version__: str = "1.0.2"
 T = TypeVar("T")
@@ -94,33 +102,35 @@ class Loader(Generic[T]):
     """
 
     def __init__(
-        self,
+        self: "Loader[T]",
         base: Optional[str] = None,
         bases: Optional[Iterable[str]] = None,
         strict: bool = False,
         exclude: Optional[Iterable[str]] = None,
-    ):
+    ) -> None:
         # Pass to generic
         super().__init__()
         self.strict = strict
-        self.__validate: Optional[Callable[[Any], bool]] = None
+        self._validate: Optional[Callable[[Any], bool]] = None
         # Check settinngs
         if base is not None and bases is None:
             self._bases = [base]
         elif base is None and bases is not None:
             self._bases = list(bases)
         else:
-            raise RuntimeError("Either base or bases should be set")
+            msg = "Either base or bases should be set"
+            raise RuntimeError(msg)
         # Map bases to physical paths
-        self._paths = list(self.__iter_paths(self._bases))
+        self._paths = list(self._iter_paths(self._bases))
         if not self._paths:
-            raise RuntimeError("No valid bases")
+            msg = "No valid bases"
+            raise RuntimeError(msg)
         #
         self._classes: Dict[str, T] = {}  # name -> class
         self._lock = Lock()
-        self._exclude: Set[str] = {x for x in exclude or []}
+        self._exclude: Set[str] = set(exclude or [])
 
-    def __get_item_type(self) -> Any:
+    def _get_item_type(self: "Loader[T]") -> T:
         """
         Get type passed to generic.
 
@@ -132,7 +142,7 @@ class Loader(Generic[T]):
         """
         return get_args(self.__orig_class__)[0]  # type: ignore
 
-    def __get_validator(self) -> Callable[[Any], bool]:
+    def _get_validator(self: "Loader[T]") -> Callable[[Any], bool]:
         """
         Get item validator function depending of instance type.
 
@@ -142,25 +152,31 @@ class Loader(Generic[T]):
         Note:
             Internal method. Must not be used directly.
         """
-        if self.__validate is not None:
-            return self.__validate
-        item_type = self.__get_item_type()
-        if self.__is_type(item_type):
+        if self._validate is not None:
+            return self._validate
+        item_type = self._get_item_type()
+        if self._is_type(item_type):
             # Type[Class]
-            self.__validate = self.__is_subclass_validator(
+            self._validate = self._is_subclass_validator(
                 get_args(item_type)[0]
             )
         else:
-            self.__validate = self.__is_instance_validator(item_type)
-        return self.__validate
+            self._validate = self._is_instance_validator(item_type)
+        return self._validate
 
     @staticmethod
-    def __is_instance_validator(t: Any) -> Callable[[Any], bool]:
+    def _is_instance_validator(
+        t: Any,  # noqa: ANN401
+    ) -> Callable[[Any], bool]:
         """
-        Instance validator. Check if the item is the instance of given type.
+        Instance validator.
+
+        Check if the item is the instance of given type.
         Used for subclass and protocol plugin schemes. i.e.
 
-            Loader[BaseClass](...)
+        ``` py
+        Loader[BaseClass](...)
+        ```
 
         Args:
             t: Arbitrary object from module to check.
@@ -172,18 +188,24 @@ class Loader(Generic[T]):
             Internal method. Must not be used directly.
         """
 
-        def inner(x: Any) -> bool:
+        def inner(x: Any) -> bool:  # noqa: ANN401
             return isinstance(x, t)
 
         return inner
 
     @staticmethod
-    def __is_subclass_validator(t: Any) -> Callable[[Any], bool]:
+    def _is_subclass_validator(
+        t: Any,  # noqa: ANN401
+    ) -> Callable[[Any], bool]:
         """
-        Instance validator. Check if the item is subclass of generic class.
+        Instance validator.
+
+        Check if the item is subclass of generic class.
         Used for subclass scheme. i.e.
 
-            Loader[Type[BaseClass]](...)
+        ``` py
+        Loader[Type[BaseClass]](...)
+        ```
 
         Args:
             t: Arbitrary object from module to check.
@@ -195,13 +217,13 @@ class Loader(Generic[T]):
             Internal method. Must not be used directly.
         """
 
-        def inner(x: Any) -> bool:
+        def inner(x: Any) -> bool:  # noqa: ANN401
             return issubclass(x, t)
 
         return inner
 
     @staticmethod
-    def __is_type(x: Any) -> bool:
+    def _is_type(x: Any) -> bool:  # noqa: ANN401
         """
         Check if the type is the typing.Type generic.
 
@@ -216,8 +238,10 @@ class Loader(Generic[T]):
         """
         return repr(x).startswith("typing.Type[")
 
-    def __iter_paths(self, bases: Iterable[str]) -> Iterable[str]:
+    def _iter_paths(self: "Loader[T]", bases: Iterable[str]) -> Iterable[str]:
         """
+        Iterate over all paths.
+
         Iterate all existing and importable paths for each
         `bases` item.
 
@@ -236,28 +260,54 @@ class Loader(Generic[T]):
                 paths = getattr(m, "__path__", None)
                 if paths:
                     yield paths[0]
-            except ModuleNotFoundError:
+            except ModuleNotFoundError as e:
                 if self.strict:
-                    raise RuntimeError(f"Module '{b}' is not found")
+                    msg = f"Module '{b}' is not found"
+                    raise RuntimeError(msg) from e
 
-    def __getitem__(self, name: str) -> T:
+    def __getitem__(self: "Loader[T]", name: str) -> T:
         """
-        Get plugin by name. Raise `KeyError` if plugin is missed.
+        Get plugin by name.
+
+        Returns plugin item depending on generic type.
 
         Args:
             name: Name of plugin.
 
         Returns:
             Plugin item depending on generic type.
+
+        Raises:
+            KeyError: if plugin is missed.
         """
         kls = self.get(name)
         if kls is None:
-            raise KeyError
+            raise KeyError(name)
         return kls
 
-    def get(self, name: str, default: Optional[T] = None) -> Optional[T]:
+    def __iter__(self: "Loader[T]") -> Iterable[str]:
         """
-        Get plugin by name. Return `default` value if plugin is missed.
+        Iterate over plugin names.
+
+        Iterate over all existing plugin names.
+        Shortland for
+
+        ``` py
+        loader.keys()
+        ```
+
+        Returns:
+            Iterable of plugin names.
+        """
+        return self.keys()
+
+    def get(
+        self: "Loader[T]", name: str, default: Optional[T] = None
+    ) -> Optional[T]:
+        """
+        Get plugin by name.
+
+        Return `default` value if plugin is missed.
 
         Args:
             name: Name of plugin.
@@ -266,15 +316,17 @@ class Loader(Generic[T]):
         Returns:
             Plugin item depending on generic type or default value.
         """
-        kls = self.__get_item(name)
+        kls = self._get_item(name)
         if kls is not None:
             return kls
         if default is not None:
             return default
         return None
 
-    def __get_item(self, name: str) -> Optional[T]:
+    def _get_item(self: "Loader[T]", name: str) -> Optional[T]:
         """
+        Get plugin by name.
+
         Search all the packages and get plugin named by `name`.
 
         Args:
@@ -287,19 +339,20 @@ class Loader(Generic[T]):
             Internal method. Must not be used directly.
         """
         if name in self._exclude:
-            raise RuntimeError("Trying to import excluded name")
+            msg = "Trying to import excluded name"
+            raise RuntimeError(msg)
         with self._lock:
             kls = self._classes.get(name)
             if kls is not None:
                 return kls
             for b in self._bases:
-                kls = self.__find_item(f"{b}.{name}")
+                kls = self._find_item(f"{b}.{name}")
                 if kls is not None:
                     self._classes[name] = kls
                     return kls
         return None
 
-    def __find_item(self, name: str) -> Optional[T]:
+    def _find_item(self: "Loader[T]", name: str) -> Optional[T]:
         """
         Get plugin item from module `name`.
 
@@ -312,7 +365,7 @@ class Loader(Generic[T]):
         Note:
             Internal method. Must not be used directly.
         """
-        is_valid = self.__get_validator()
+        is_valid = self._get_validator()
         try:
             module = __import__(name, {}, {}, "*")
             for _, member in inspect.getmembers(module):
@@ -331,8 +384,10 @@ class Loader(Generic[T]):
             pass
         return None
 
-    def keys(self) -> Iterable[str]:
+    def keys(self: "Loader[T]") -> Iterable[str]:
         """
+        Iterate over plugin name.
+
         Iterable yielding all existing plugin names.
 
         Returns:
@@ -347,7 +402,7 @@ class Loader(Generic[T]):
                 seen.add(mi.name)
         yield from sorted(seen)
 
-    def values(self) -> Iterable[T]:
+    def values(self: "Loader[T]") -> Iterable[T]:
         """
         Iterate all found plugin items.
 
@@ -357,12 +412,12 @@ class Loader(Generic[T]):
         Note:
             `values()` will force plugin module loading and instantination.
         """
-        for name in self.keys():
+        for name in self:
             item = self.get(name)
             if item is not None:
                 yield item
 
-    def items(self) -> Iterable[Tuple[str, T]]:
+    def items(self: "Loader[T]") -> Iterable[Tuple[str, T]]:
         """
         Iterate the (`name`, `item`) tuples for all plugin items.
 
@@ -372,7 +427,7 @@ class Loader(Generic[T]):
         None:
             `items()` will force plugin module loading and instantination.
         """
-        for name in self.keys():
+        for name in self:
             item = self.get(name)
             if item is not None:
                 yield name, item

@@ -1,21 +1,21 @@
 # ---------------------------------------------------------------------
-# Gufo Labs Loader:
-# Examples tests
+# Gufo Loader: Examples tests
 # ---------------------------------------------------------------------
-# Copyright (C) 2022, Gufo Labs
+# Copyright (C) 2022-23, Gufo Labs
 # ---------------------------------------------------------------------
 
 # Python modules
-import sys
 import os
 import subprocess
+import sys
+from typing import List
 
 # Third-party modules
 import pytest
 
 
 @pytest.mark.parametrize(
-    ["example", "args", "expected"],
+    ("example", "args", "expected"),
     [
         ("protocol", ["add", "1", "2"], "3"),
         ("protocol", ["sub", "2", "1"], "1"),
@@ -25,10 +25,10 @@ import pytest
         ("subclass", ["sub", "2", "1"], "1"),
     ],
 )
-def test_example(example, args, expected):
+def test_example(example: str, args: List[str], expected: str) -> None:
     python = sys.executable
     r = subprocess.run(
-        [python, "-m", "myapp"] + args,
+        [python, "-m", "myapp", *args],
         cwd=os.path.join("examples", example),
         env={"PYTHONPATH": os.path.join(os.getcwd(), "src")},
         capture_output=True,

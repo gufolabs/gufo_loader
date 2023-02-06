@@ -54,8 +54,8 @@ jobs:
       - name: Check Formatting
         run: black --check examples/ src/ tests/
 
-      - name: Check Flake8
-        run: flake8 examples/ src/ tests/
+      - name: Check Ruff
+        run: ruff -q examples/ src/ tests/
 
       - name: Check Mypy
         run: mypy --strict src/
@@ -88,13 +88,13 @@ jobs:
         run: python -m build --sdist --wheel
 
       # - name: Publish distribution 📦 to Test PyPI
-      #   uses: pypa/gh-action-pypi-publish@master
+      #   uses: pypa/gh-action-pypi-publish@release/v1
       #   with:
       #     password: ${{ secrets.TEST_PYPI_API_TOKEN }}
       #     repository_url: https://test.pypi.org/legacy/
 
       - name: Publish distribution 📦 to PyPI
         if: startsWith(github.ref, 'refs/tags')
-        uses: pypa/gh-action-pypi-publish@master
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
