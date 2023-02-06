@@ -18,6 +18,7 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 * Use `actions/cache@v3`
 * Project structure tests
 * CI workflows tests
+* Extend licence copyright years
 
 ## 1.0.2 - 2022-11-06
 
