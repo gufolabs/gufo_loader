@@ -54,7 +54,7 @@ requirement in our [Code Quality](codequality.md) standards. To check code
 for linting errors run:
 
 ```
-$ flake8 examples/ src/ tests/
+$ ruff examples/ src/ tests/
 ```
 
 ### Python Code Static Checks
