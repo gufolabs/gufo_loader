@@ -13,6 +13,10 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 * `py.typed` file for PEP-561 compatibility
 * docs: Supported standards
 
+## Changed
+
+* docs: license.md renamed to LICENSE.md
+
 ### Infrastructure
 
 * Use `actions/checkout@v3`
@@ -21,6 +25,7 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 * CI workflows tests
 * Extend licence copyright years
 * Dockerfile: Use `set -x` to log RUN commands
+* docs: Use common Gufo Labs mkdocs plugins set
 
 ## 1.0.2 - 2022-11-06
 
