@@ -73,6 +73,7 @@ from typing import (
     Dict,
     Generic,
     Iterable,
+    Iterator,
     Optional,
     Set,
     Tuple,
@@ -285,7 +286,7 @@ class Loader(Generic[T]):
             raise KeyError(name)
         return kls
 
-    def __iter__(self: "Loader[T]") -> Iterable[str]:
+    def __iter__(self: "Loader[T]") -> Iterator[str]:
         """
         Iterate over plugin names.
 
@@ -299,7 +300,7 @@ class Loader(Generic[T]):
         Returns:
             Iterable of plugin names.
         """
-        return self.keys()
+        return iter(self.keys())
 
     def get(
         self: "Loader[T]", name: str, default: Optional[T] = None
