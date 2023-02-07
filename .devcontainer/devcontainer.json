@@ -21,15 +21,13 @@
     },
     // Set *default* container specific settings.json values on container create.
     "settings": {
-        "settings": {
-            "python.formatting.blackPath": "/usr/local/bin/black",
-            "python.formatting.provider": "black",
-            "python.pythonPath": "/usr/local/bin/python",
-            "[python]": {
-                "editor.codeActionsOnSave": {
-                    "source.fixAll": true,
-                }
-            },
+        "python.formatting.blackPath": "/usr/local/bin/black",
+        "python.formatting.provider": "black",
+        "python.pythonPath": "/usr/local/bin/python",
+        "[python]": {
+            "editor.codeActionsOnSave": {
+                "source.fixAll": true,
+            }
         },
     },
     // Add the IDs of extensions you want installed when the container is created.
