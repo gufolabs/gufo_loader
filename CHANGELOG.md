@@ -11,6 +11,7 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 ### Infrastructure
 
 * devcontainer: Move settings to `customizations.vscode.settings`
+* Ruff 0.0.286
 
 ## 1.0.3 - 2022-02-06
 
