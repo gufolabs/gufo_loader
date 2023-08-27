@@ -12,6 +12,7 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 
 * devcontainer: Move settings to `customizations.vscode.settings`
 * Ruff 0.0.286
+* mkdocs-material 9.2.3
 
 ## 1.0.3 - 2022-02-06
 
