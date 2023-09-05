@@ -1,8 +1,14 @@
-# Gufo Loader Documentation
-
-*Gufo Loader* is the flexible and robust foundation
-for Python plugins architecture.
-
+---
+template: index.html
+hide:
+    - navigation
+    - toc
+hero:
+    title: Gufo Loader
+    subtitle: The flexible and robust foundation for Python plugins architecture
+    install_button: Getting Started
+    source_button: Source Code
+---
 ## Software Evolution
 
 Software tends to grow larger and larger. Even the small
@@ -63,7 +69,7 @@ Depending on the requirements, Plugins may be:
 * [Classes sharing the protocol](examples/protocol.md).
 * [Singleton instances of the given class](examples/singleton.md).
 
-## Virtues
+## Features
 
 * Clean dict-like API.
 * Full abstraction from the plugin internals.
