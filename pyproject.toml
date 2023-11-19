@@ -9,12 +9,19 @@ requires = [
 line-length = 79
 target-version = ['py39']
 
+[tool.coverage.report]
+exclude_lines = [
+  "if TYPE_CHECKING", # Disable type-checking imports
+  "@(abc\\.)?abstract", # Ignore abstract methods
+]
+include = ["src/*"]
+
 [tool.coverage.run]
+branch = false
 omit = ["*tests*", "*examples*"]
 
 [tool.coverage.html]
 directory = "dist/coverage"
-
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
 exclude = [".git", "build", "dist"]
@@ -103,6 +110,7 @@ classifiers = [
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
   "License :: OSI Approved :: BSD License",
   "Topic :: Software Development",
   "Topic :: Software Development :: Libraries",

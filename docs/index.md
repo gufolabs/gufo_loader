@@ -77,6 +77,7 @@ Depending on the requirements, Plugins may be:
 * Full Python typing support.
 * Editor completion.
 * Well-tested, battle-proven code.
+* 100% test coverage.
 
 ## On Gufo Stack
 
