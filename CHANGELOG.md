@@ -19,7 +19,8 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 ### Infrastructure
 
 * devcontainer: Move settings to `customizations.vscode.settings`
-* Ruff 0.0.286
+* Ruff 0.1.5
+* mypy 1.5.1
 * mkdocs-material 9.4.8
 
 ## 1.0.3 - 2022-02-06
