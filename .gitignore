@@ -3,7 +3,6 @@ syntax: glob
 !.gitignore
 !.devcontainer/
 !.github/
-!.requirements/
 *.pyc
 *.pyo
 build/
