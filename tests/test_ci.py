@@ -24,9 +24,11 @@ def _get_root() -> str:
 
 
 VERSIONS = [
-    "actions/cache@v3",
-    "actions/checkout@v3",
-    "actions/setup-python@v4",
+    "actions/cache@v4",
+    "actions/checkout@v4",
+    "actions/setup-python@v5",
+    "actions/download-artifact@v4",
+    "actions/upload-artifact@v4",
     "pypa/gh-action-pypi-publish@release/v1",
 ]
 
@@ -58,7 +60,7 @@ def _iter_actions() -> Iterable[Action]:
             for step in data["jobs"][job]["steps"]:
                 if "uses" in step:
                     uses = step["uses"]
-                    for v in versions:
+                    for v, expected in versions.items():
                         if uses.startswith(f"{v}@"):
                             yield Action(
                                 path=fn,
@@ -66,7 +68,7 @@ def _iter_actions() -> Iterable[Action]:
                                 step=step["name"],
                                 action=v,
                                 version=uses.split("@")[1],
-                                expected=versions[v],
+                                expected=expected,
                             )
                             break
 
