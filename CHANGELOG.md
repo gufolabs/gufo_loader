@@ -27,9 +27,9 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 * devcontainer: Python 3.13
 * Ruff 0.11.2
 * mypy 1.13.0
-* mkdocs-material 9.4.8
-* pytest 7.4.3
-* coverage 7.3.2
+* mkdocs-material 9.5.44
+* pytest 8.3.3
+* coverage 7.6.4
 
 ## 1.0.3 - 2022-02-06
 
