@@ -74,6 +74,7 @@ Depending on the requirements, Plugins may be:
 * Clean dict-like API.
 * Full abstraction from the plugin internals.
 * Custom plugins.
+* Built with security in mind.
 * Full Python typing support.
 * Editor completion.
 * Well-tested, battle-proven code.
