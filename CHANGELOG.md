@@ -17,12 +17,16 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 * Python 3.12 tests.
 * docs: Fancy front page.
 
+## Removed
+
+* Dropping Python 3.8 support
+
 ### Infrastructure
 
 * devcontainer: Move settings to `customizations.vscode.settings`
 * devcontainer: Python 3.12
-* Ruff 0.1.5
-* mypy 1.5.1
+* Ruff 0.11.2
+* mypy 1.13.0
 * mkdocs-material 9.4.8
 * pytest 7.4.3
 * coverage 7.3.2

@@ -55,7 +55,7 @@ jobs:
         run: black --check examples/ src/ tests/
 
       - name: Check Ruff
-        run: ruff -q examples/ src/ tests/
+        run: ruff check -q examples/ src/ tests/
 
       - name: Check Mypy
         run: mypy --strict src/
