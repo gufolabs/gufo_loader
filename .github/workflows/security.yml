@@ -1,0 +1,14 @@
+name: Check vulnerabilities
+
+on:
+  workflow_dispatch: # allows running manually
+
+jobs:
+  security:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@main
+      - name: Run Safety CLI to check for vulnerabilities
+        uses: pyupio/safety-action@v1
+        with:
+          api-key: ${{ secrets.SAFETY_API_KEY }}
