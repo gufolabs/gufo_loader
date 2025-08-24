@@ -126,7 +126,6 @@ class Loader(Generic[T]):
         if not self._paths:
             msg = "No valid bases"
             raise RuntimeError(msg)
-        #
         self._classes: Dict[str, T] = {}  # name -> class
         self._lock = Lock()
         self._exclude: Set[str] = set(exclude or [])

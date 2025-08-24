@@ -35,12 +35,12 @@ requirement in our [Code Quality](codequality.md) standards. To check code
 formatting run:
 
 ```
-$ black --check examples/ src/ tests/
+$ ruff format --check examples/ src/ tests/
 ```
 
 To fix formatting errors run:
 ```
-$ black examples/ src/ tests/
+$ ruff format examples/ src/ tests/
 ```
 
 We recommend setting python code formatting on file saving
@@ -54,7 +54,7 @@ requirement in our [Code Quality](codequality.md) standards. To check code
 for linting errors run:
 
 ```
-$ ruff examples/ src/ tests/
+$ ruff check examples/ src/ tests/
 ```
 
 ### Python Code Static Checks
