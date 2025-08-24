@@ -1,13 +1,14 @@
 name: Check vulnerabilities
-
 on:
-  workflow_dispatch: # allows running manually
-
+  workflow_dispatch: # allows running manuallyå
 jobs:
-  security:
+  safety:
+    name: Run Safety CLI checks
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@main
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Run Safety CLI to check for vulnerabilities
         uses: pyupio/safety-action@v1
         with:
