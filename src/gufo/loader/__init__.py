@@ -56,7 +56,7 @@ Example:
     Plugins as the protocols:
 
     ``` py
-    loader = Loader[MyProtocol](base="myproject.plugins")
+    loader = Loader[Type[MyProtocol]](base="myproject.plugins")
     ```
 
 Attributes:

@@ -17,12 +17,17 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 * Python 3.13 support.
 * docs: Fancy front page.
 
+## Fixes
+
+* Protocol scheme documentation and examples.
+
 ## Removed
 
 * Dropping Python 3.8 support
 
 ### Infrastructure
 
+* Depencies are moved to pyproject.toml
 * devcontainer: Move settings to `customizations.vscode.settings`
 * devcontainer: Python 3.13
 * Ruff 0.11.2

@@ -16,37 +16,41 @@ The code is straightforward
 ```  py title="base.py" linenums="1" hl_lines="1"
 --8<-- "examples/subclass/myapp/base.py"
 ```
+In this module, we define an abstract class. It does not provide an actual implementation
+but rather specifies an interface. The established practice in Python is to derive
+such classes from `ABC` and mark the required parts with `@abstractmethod`.
+
+```  py title="base.py" linenums="1" hl_lines="4"
+--8<-- "examples/subclass/myapp/base.py"
+```
 
 Define a base class for our plugins. We have no particular requirements,
-so we can derive it from `object`.
+so we can derive it from `ABC` to mark this class is abstract.
 
-```  py title="base.py" linenums="1" hl_lines="2"
+```  py title="base.py" linenums="1" hl_lines="5"
 --8<-- "examples/subclass/myapp/base.py"
 ```
 
 Though docstrings are advisory, it will help to navigate our code,
 so describe plugin tasks and features.
 
-```  py title="base.py" linenums="1" hl_lines="4"
+```  py title="base.py" linenums="1" hl_lines="7"
+--8<-- "examples/subclass/myapp/base.py"
+```
+The `@abstractmethod` decorator indicates that a method must be implemented in derived classes.
+
+```  py title="base.py" linenums="1" hl_lines="8"
 --8<-- "examples/subclass/myapp/base.py"
 ```
 
 Our main function of the plugin, do not to forget to place the proper type hints to allow
 static type checking.
 
-```  py title="base.py" linenums="1" hl_lines="5"
+```  py title="base.py" linenums="1" hl_lines="9"
 --8<-- "examples/subclass/myapp/base.py"
 ```
 
 The main function of the plugin already should be documented.
-
-```  py title="base.py" linenums="1" hl_lines="6"
---8<-- "examples/subclass/myapp/base.py"
-```
-
-Ellipses operator (`...`) shows the implementation is abstract. 
-If missed, [mypy](https://mypy.readthedocs.io/en/stable/)
-will complain the function doesn't return an integer value.
 
 ## Application Core
 First, lets define the application's core:

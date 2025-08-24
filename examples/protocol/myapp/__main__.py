@@ -1,10 +1,11 @@
 import sys
+from typing import Type
 
 from gufo.loader import Loader
 
 from .base import PluginProtocol
 
-loader = Loader[PluginProtocol](base="myapp.plugins")
+loader = Loader[Type[PluginProtocol]](base="myapp.plugins")
 
 
 def main(op: str, x: int, y: int) -> None:
