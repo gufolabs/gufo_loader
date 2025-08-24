@@ -116,6 +116,7 @@ classifiers = [
   "Operating System :: OS Independent",
   "Typing :: Typed",
 ]
+description = "Generic Python class loader for robust plugin infrastructure"
 dynamic = ["version"]
 keywords = ["loader", "plugin"]
 license = {text = "BSD 3-Clause License"}
