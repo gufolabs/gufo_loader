@@ -14,7 +14,7 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 
 ### Added
 
-* Python 3.12 tests.
+* Python 3.13 support.
 * docs: Fancy front page.
 
 ## Removed
@@ -24,7 +24,7 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 ### Infrastructure
 
 * devcontainer: Move settings to `customizations.vscode.settings`
-* devcontainer: Python 3.12
+* devcontainer: Python 3.13
 * Ruff 0.11.2
 * mypy 1.13.0
 * mkdocs-material 9.4.8
