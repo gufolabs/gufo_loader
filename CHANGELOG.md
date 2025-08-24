@@ -35,6 +35,7 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 * mkdocs-material 9.5.44
 * pytest 8.3.3
 * coverage 7.6.4
+* IPython 9.4.1
 
 ## 1.0.3 - 2022-02-06
 
