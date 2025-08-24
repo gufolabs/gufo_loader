@@ -94,6 +94,9 @@ jobs:
   publish:
     runs-on: ubuntu-24.04
     needs: test
+    environment: pypi
+    permissions:
+      id-token: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -122,4 +125,4 @@ jobs:
         if: startsWith(github.ref, 'refs/tags')
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
+          print-hash: true
