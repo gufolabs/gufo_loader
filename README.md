@@ -3,6 +3,7 @@
 *Generic Python class loader for robust plugin infrastructure*.
 
 [![PyPi version](https://img.shields.io/pypi/v/gufo_loader.svg)](https://pypi.python.org/pypi/gufo_loader/)
+![Downloads](https://img.shields.io/pypi/dw/gufo_loader)
 ![Python Versions](https://img.shields.io/pypi/pyversions/gufo_loader)
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 ![Build](https://img.shields.io/github/actions/workflow/status/gufolabs/gufo_loader/py-tests.yml?branch=master)
