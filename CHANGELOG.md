@@ -17,6 +17,9 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 * Use python:3.13-slim-trixie as base for devcontainer.
 * Install security updates during devcontainer build.
 
+### Infrastructure
+
+* Codecov integration.
 
 ## 1.0.4 - 2025-08-24
 
