@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 To see unreleased changes, please see the [CHANGELOG on the master branch](https://github.com/gufolabs/gufo_loader/blob/master/CHANGELOG.md) guide.
 
+## [Unreleased]
+
+### Security
+
+* Use python:3.13-slim-trixie as base for devcontainer.
+
 ## 1.0.4 - 2025-08-24
 
 ### Added
