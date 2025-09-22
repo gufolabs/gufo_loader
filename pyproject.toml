@@ -125,11 +125,11 @@ requires-python = ">=3.9"
 
 [project.optional-dependencies]
 docs = [
-  "mkdocs-material==9.5.44",
-  "mkdocstrings[python]==0.27.0",
   "mkdocs-gen-files==0.5.0",
-  "mkdocs-literate-nav==0.6.1",
-  "mkdocs-section-index==0.3.9",
+  "mkdocs-literate-nav==0.6.2",
+  "mkdocs-material==9.6.11",
+  "mkdocs-section-index==0.3.10",
+  "mkdocstrings[python]==0.29.1",
 ]
 ipython = [
   "ipython==9.4.0",
@@ -140,9 +140,10 @@ lint = [
   "types-PyYAML==6.0.12.3",
 ]
 test = [
-  "pytest==8.3.3",
-  "coverage[toml]==7.6.4",
   "PyYAML>=6.0",
+  "pytest-benchmark==5.1.0",
+  "pytest-cov==7.0.0",
+  "pytest==8.3.3",
 ]
 
 [project.readme]
