@@ -20,6 +20,10 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 ### Infrastructure
 
 * Codecov integration.
+* Ruff 0.14.0
+* Mypy 1.18.2
+* Pytest 8.4.2
+* IPython 9.6.0
 
 ## 1.0.4 - 2025-08-24
 
