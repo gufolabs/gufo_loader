@@ -1,4 +1,4 @@
-FROM python:3.13-slim-trixie AS dev
+FROM python:3.14-slim-trixie AS dev
 COPY . /workspaces/gufo_loader
 WORKDIR /workspaces/gufo_loader
 RUN \
