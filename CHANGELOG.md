@@ -12,13 +12,17 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 
 ## [Unreleased]
 
+### Added
+
+* Python 3.14 support.
+
 ### Security
 
-* Use python:3.13-slim-trixie as base for devcontainer.
 * Install security updates during devcontainer build.
 
 ### Infrastructure
 
+* Use python:3.14-slim-trixie as base for devcontainer.
 * Codecov integration.
 * Ruff 0.14.0
 * Mypy 1.18.2
