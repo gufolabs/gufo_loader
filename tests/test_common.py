@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------
 # Gufo Loader: Common tests
 # ---------------------------------------------------------------------
-# Copyright (C) 2022-23, Gufo Labs
+# Copyright (C) 2022-26, Gufo Labs
 # ---------------------------------------------------------------------
 
 # Python modules
@@ -115,5 +115,5 @@ def test_values(exc_loader: LoaderType) -> None:
 def test_items(exc_loader: LoaderType) -> None:
     items: List[Tuple[str, str]] = []
     for name, kls in exc_loader.items():
-        items += [(name, kls().get_name())]
+        items.append((name, kls().get_name()))
     assert items == [("a", "a"), ("b", "b"), ("c", "c")]
