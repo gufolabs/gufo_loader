@@ -2,7 +2,6 @@
 // * For format details, see https://aka.ms/devcontainer.json.
 // * For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.202.3/containers/docker-existing-dockerfile
-// * For configuration guidelines see @todo
 {
     "name": "Gufo Loader",
     "runArgs": [

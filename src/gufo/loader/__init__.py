@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------
 # Gufo Loader
 # ---------------------------------------------------------------------
-# Copyright (C) 2022-25, Gufo Labs
+# Copyright (C) 2022-26, Gufo Labs
 # ---------------------------------------------------------------------
 
 """
@@ -46,7 +46,7 @@ Example:
     ```
 
 Example:
-    Plugins as the singletones:
+    Plugins as the singletons:
 
     ``` py
     loader = Loader[BasePlugin](base="myproject.plugins")
@@ -290,7 +290,7 @@ class Loader(Generic[T]):
         Iterate over plugin names.
 
         Iterate over all existing plugin names.
-        Shortland for
+        Shortcut for
 
         ``` py
         loader.keys()
@@ -424,7 +424,7 @@ class Loader(Generic[T]):
         Return:
             Iterable of tuples of (`name`, `item`)
 
-        None:
+        Note:
             `items()` will force plugin module loading and instantination.
         """
         for name in self:
