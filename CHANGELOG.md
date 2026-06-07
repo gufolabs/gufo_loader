@@ -12,6 +12,10 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 
 ## [Unreleased]
 
+### Fixes
+
+* Do not install unexistent `extras` dependency group in CI.
+
 ### Added
 
 * Python 3.14 support.
