@@ -1,10 +1,10 @@
 # Singleton tests packages
 
-All plugins are the innstances of `BasePlugin` subclasses. Only one singleton instance will be instantiated during process runtime.
+All plugins are the instances of `BasePlugin` subclasses. Only one singleton instance will be instantiated during process runtime.
 
 Contains files:
 
-* `base.py` - contains `BaseProtocol` class.
+* `base.py` - contains `BasePlugin` class.
 * `primary/` - primary plugin package. Take precedence over `secondary/`.
   
   * `__init__.py` - empty file to denote package.
