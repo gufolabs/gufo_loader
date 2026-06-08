@@ -15,6 +15,10 @@ nav:
       - Subclass Scheme: examples/subclass.md
       - Protocol Scheme: examples/protocol.md
       - Singleton Scheme: examples/singleton.md
+  - Migrating:
+      - Overview: migrating/index.md
+      - From pluggy: migrating/pluggy.md
+      - From importlib: migrating/importlib.md
   - Developers' Guide:
       - Overview: dev/index.md
       - Developer's Environment: dev/environment.md
