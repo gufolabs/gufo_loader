@@ -18,6 +18,7 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 
 ### Changed
 
+* Allow recursive plugin loading.
 * Updated FAQ
 
 ### Added
