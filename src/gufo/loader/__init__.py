@@ -400,7 +400,7 @@ class Loader(Generic[T]):
             Iterable of strings with all plugin names.
 
         Note:
-            `keys()` do not force plugin module loading and instantination.
+            `keys()` do not force plugin module loading and instantiation.
         """
         seen: Set[str] = set()
         for mi in iter_modules(self._paths):
@@ -416,7 +416,7 @@ class Loader(Generic[T]):
             Iterable of plugin items.
 
         Note:
-            `values()` will force plugin module loading and instantination.
+            `values()` will force plugin module loading and instantiation.
         """
         for name in self:
             item = self.get(name)
@@ -431,7 +431,7 @@ class Loader(Generic[T]):
             Iterable of tuples of (`name`, `item`)
 
         Note:
-            `items()` will force plugin module loading and instantination.
+            `items()` will force plugin module loading and instantiation.
         """
         for name in self:
             item = self.get(name)
