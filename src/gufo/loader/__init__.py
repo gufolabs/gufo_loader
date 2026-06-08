@@ -83,7 +83,7 @@ from typing import (
     overload,
 )
 
-__version__: str = "1.0.4"
+__version__: str = "1.0.5"
 T = TypeVar("T")
 
 
