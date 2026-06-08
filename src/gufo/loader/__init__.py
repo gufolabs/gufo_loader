@@ -66,7 +66,7 @@ Attributes:
 # Python modules
 import inspect
 from pkgutil import iter_modules
-from threading import Lock
+from threading import RLock
 from typing import (
     Any,
     Callable,
@@ -128,7 +128,7 @@ class Loader(Generic[T]):
             msg = "No valid bases"
             raise RuntimeError(msg)
         self._classes: Dict[str, T] = {}  # name -> class
-        self._lock = Lock()
+        self._lock = RLock()
         self._exclude: Set[str] = set(exclude or [])
 
     def _get_item_type(self: "Loader[T]") -> T:
