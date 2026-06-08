@@ -80,6 +80,7 @@ from typing import (
     TypeVar,
     cast,
     get_args,
+    overload,
 )
 
 __version__: str = "1.0.4"
@@ -301,6 +302,10 @@ class Loader(Generic[T]):
         """
         return iter(self.keys())
 
+    @overload
+    def get(self: "Loader[T]", name: str) -> Optional[T]: ...
+    @overload
+    def get(self: "Loader[T]", name: str, default: T) -> T: ...
     def get(
         self: "Loader[T]", name: str, default: Optional[T] = None
     ) -> Optional[T]:
@@ -314,7 +319,8 @@ class Loader(Generic[T]):
             default: Default value, if plugin is missed.
 
         Returns:
-            Plugin item depending on generic type or default value.
+            Plugin item if found, otherwise the explicit default value.
+            If default is omitted, returns None when plugin is missing.
         """
         kls = self._get_item(name)
         if kls is not None:
