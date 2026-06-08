@@ -1,6 +1,6 @@
 # Gufo Loader
 
-*Generic Python class loader for robust plugin infrastructure*.
+*Generic Python class loader for robust plugin infrastructure.*
 
 [![PyPi version](https://img.shields.io/pypi/v/gufo_loader.svg)](https://pypi.python.org/pypi/gufo_loader/)
 ![Downloads](https://img.shields.io/pypi/dw/gufo_loader)
@@ -19,77 +19,116 @@
 
 ---
 
-Loader delivers plugins from one or many plugin packages.
+Load plugins lazily — and keep full static typing throughout. Unlike traditional plugin managers that return `Any` or an untyped spec object, **Gufo Loader** uses Python Generics to preserve the exact type of every loaded plugin: your IDE sees everything, and static analyzers catch errors before you hit run.
 
-## Loader
+## The Problem
 
-Loader is the _dict_-like singleton providing the following services:
+Most plugin frameworks lose types at the point of dynamic loading. You call a method to fetch `"my_database"` driver and get back an opaque object — autocomplete stops working, `mypy` complains about `Any`, and refactoring becomes guesswork.
 
-* plugin initialization and fetching.
-* plugins enumeration.
+```python
+# ❌ Traditional approach: any return type
+plugin = manager.get_plugin("my_database")  # -> Any
+plugin.commit()  # no autocomplete, no static analysis
+```
 
-Plugins are not dependent on the loader and do not need any registration
-process. The loaders are lazy by nature, meaning the plugin will be imported 
-and initialized just in time when the user code requests the plugin.
+## The Gufo Loader Way
 
-## Plugins
+Every call in the dict-like API retains the generic type `T`. Your plugin modules are inspected automatically — no registration needed — and IDEs show full signatures for every loaded plugin.
 
-Plugins are named entities dedicated to the given task. Each plugin
-is defined in its python module. Depending on the loader settings
-plugins can be:
+```python
+# ✅ Fully typed from import to usage
+from gufo.loader import Loader
+import my_plugins.plugins
 
-* *Instances*: Singleton instances having the class as the ancestor.
-* *Subclasses*: Classes having the common ancestor.
-* *Protocols*: Classes following the set of methods.
+plugins: Loader[my_plugins.BaseDB] = Loader(
+    base="my_plugins",
+)
 
-## Plugin Packages
+db: my_plugins.BaseDB = plugins["primary_db"]  # type is BaseDB, not Any
+conn = db.connect(...)                          # full autocomplete
+print(db.dialect)                               # static analyzer knows the type
+```
 
-Plugin packages are plain Python packages: the directory containing
-python files with plugins and the empty `__init__.py` file.
+This works across all three loading schemes described below.
 
-Plugin name must match the module name. For example, module
-`my_plugin.py` will define the plugin `my_plugin`.
+## Plugin Schemes
 
-Examples:
+Plugins are named entities stored in a Python package (a directory with `__init__.py`). The plugin name always matches its module name — `auth.py` defines plugin `auth`. There is **no registration process**: the loader discovers plugins by scanning the package and instantiating or filtering them according to the generic type parameter.
 
-    Plugins as the subclasses:
+| Scheme | Generic Parameter | What Gets Loaded |
+| --- | --- | --- |
+| Subclass | `Loader[Type[BaseClass]]` | Classes inheriting from `BaseClass` |
+| Singleton | `Loader[BaseClass]` | Instances of `BaseClass` (or its subclasses) |
+| Protocol | `Loader[MyProtocol]` | Objects satisfying the protocol's structural interface |
 
-        loader = Loader[Type[BasePlugin]](base="myproject.plugins")
+Quick start for each scheme:
 
-    Plugins as the singletones:
+```python
+# Subclass loader — yields classes
+plugins: Loader[Type[BasePlugin]] = Loader(base="myproject.plugins")
+plugin_cls = plugins["webdriver"]  # -> Type[BasePlugin]
 
-        loader = Loader[BasePlugin](base="myproject.plugins")
+# Singleton loader — yields instances
+plugins: Loader[BasePlugin] = Loader(base="myproject.plugins")
+instance = plugins["webdriver"]    # -> BasePlugin instance
+```
 
-    Plugins as the protocols:
+## Features
 
-        loader = Loader[MyProtocol](base="myproject.plugins")
+* **Full static typing** — `py.typed` bundle, generic API, zero `Any` leakage.
+* **Dictionary-like interface** — intuitive `loader[name]`, `loader.get(name)`, iteration over keys/values/items.
+* **Lazy loading** — plugins are imported into memory only when first requested and cached thereafter.
+* **Thread-safe** — built-in lock guards the discovery cache.
+* **Three schemes** — subclass, singleton (instance), and protocol-based plugin discovery.
+* **No registration overhead** — plugins live in plain Python packages. The loader finds them automatically.
+* **Security-first** — strict mode rejects missing base packages at initialization; exclude lists filter known-safe names.
 
-## Virtues
+## Getting Started
 
-* Clean dict-like API.
-* Full abstraction from the plugin internals.
-* Custom plugins.
-* Built with security in mind.
-* Full Python typing support.
-* Editor completion.
-* Well-tested, battle-proven code.
-* 100% test coverage.
+1. Install the package:
+
+   ```bash
+   pip install gufo-loader
+   ```
+
+2. Define a plugin interface and two implementations:
+
+   ```python
+   # plugins/base.py
+   class BasePlugin(ABC):
+       @abstractmethod
+       def execute(self) -> str: ...
+   ```
+
+3. Create plugins in the same package:
+
+   ```python
+   # plugins/alpha.py
+   from .base import BasePlugin
+
+   class AlphaPlugin(BasePlugin):
+       def execute(self) -> str:
+           return "alpha"
+   ```
+
+4. Load and use them:
+
+   ```python
+   from gufo.loader import Loader
+   from typing import Type
+   from plugins.base import BasePlugin
+
+   loader: Loader[Type[BasePlugin]] = Loader(base="plugins")
+   plugin_cls = loader["alpha"]  # fully typed at import time
+   instance = plugin_cls()       # -> AlphaPlugin
+   print(instance.execute())     # "alpha"
+   ```
 
 ## On Gufo Stack
 
-This product is a part of [Gufo Stack][Gufo Stack] - the collaborative effort 
-led by [Gufo Labs][Gufo Labs]. Our goal is to create a robust and flexible 
-set of tools to create network management software and automate 
-routine administration tasks.
+This product is part of [Gufo Stack][Gufo Stack] — a collaborative effort led by [Gufo Labs][Gufo Labs]. Our goal is to build a robust, flexible toolkit for network management software and automation.
 
-To do this, we extract the key technologies that have proven themselves 
-in the [NOC][NOC] and bring them as separate packages. Then we work on API,
-performance tuning, documentation, and testing. The [NOC][NOC] uses the final result
-as the external dependencies.
-
-[Gufo Stack][Gufo Stack] makes the [NOC][NOC] better, and this is our primary task. But other products
-can benefit from [Gufo Stack][Gufo Stack] too. So we believe that our effort will make 
-the other network management products better.
+We extract proven technologies from the [NOC][NOC] project, refine their APIs, performance, documentation, and testing as standalone packages. NOC consumes these as final external dependencies. Other products benefit from Gufo Stack too — we believe better shared tools make better infrastructure.
 
 [Gufo Labs]: https://gufolabs.com/
 [Gufo Stack]: https://docs.gufolabs.com/
