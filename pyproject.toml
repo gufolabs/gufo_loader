@@ -9,6 +9,8 @@ requires = [
 exclude_lines = [
   "if TYPE_CHECKING", # Disable type-checking imports
   "@(abc\\.)?abstract", # Ignore abstract methods
+  "@overload", # Ignore overloads
+  "\\.\\.\\.\\s*$", # Ignore stub functions
 ]
 include = ["src/*"]
 

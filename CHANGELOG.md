@@ -24,6 +24,8 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 
 * Python 3.14 support.
 * docs: Migration from pluggy and raw importlib.
+* `AGENTS.md` with agentic instructions.
+* Type overrides for `.get()`
 
 ### Security
 
