@@ -1,6 +1,6 @@
 # Subclass tests packages
 
-All plugins are the classes derived from `BasePlugin` class defined in the`base.py`. Multiple instances of plugin may be instantiated by loader users.
+All plugins are the classes derived from `BasePlugin` class defined in the `base.py`. Multiple instances of plugin may be instantiated by loader users.
 
 Contains files:
 

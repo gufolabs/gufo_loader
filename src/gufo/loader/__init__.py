@@ -228,7 +228,7 @@ class Loader(Generic[T]):
         Check if the type is the typing.Type generic.
 
         Args:
-            x: t: Arbitrary object from module to check.
+            x: Arbitrary object from module to check.
 
         Returns:
             true if `x` is the `typing.Type` generic.
