@@ -15,7 +15,7 @@ The primary advantages of migrating are:
 ### Available Guides
 
 *   [Migrating from Pluggy](pluggy.md) — replacing `pluggy` entry points with a type-safe generator API.
-*   [Migrating from `importlib`] — dropping manual path scanning (with `pkgutil`) in favor of generic, lazy-loaded discovery.
+*   [Migrating from `importlib`](importlib.md) — dropping manual path scanning (with `pkgutil`) in favor of generic, lazy-loaded discovery.
 
 !!! note "Benefits for AI agents"
 
