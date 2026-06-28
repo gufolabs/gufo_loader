@@ -12,7 +12,7 @@ from ..base import BasePlugin
 class BPlugin(BasePlugin):
     name = "b?"
 
-    def get_name(self: "BPlugin") -> str:
+    def get_name(self) -> str:
         return self.name
 
 

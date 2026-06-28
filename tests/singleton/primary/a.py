@@ -10,7 +10,7 @@ from ..base import BasePlugin
 class APlugin(BasePlugin):
     name = "a"
 
-    def get_name(self: "APlugin") -> str:
+    def get_name(self) -> str:
         return self.name
 
 

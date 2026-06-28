@@ -104,7 +104,7 @@ class Loader(Generic[T]):
     """
 
     def __init__(
-        self: "Loader[T]",
+        self,
         base: Optional[str] = None,
         bases: Optional[Iterable[str]] = None,
         strict: bool = False,
@@ -131,7 +131,7 @@ class Loader(Generic[T]):
         self._lock = RLock()
         self._exclude: Set[str] = set(exclude or [])
 
-    def _get_item_type(self: "Loader[T]") -> T:
+    def _get_item_type(self) -> T:
         """
         Get type passed to generic.
 
@@ -143,7 +143,7 @@ class Loader(Generic[T]):
         """
         return get_args(self.__orig_class__)[0]  # type: ignore
 
-    def _get_validator(self: "Loader[T]") -> Callable[[Any], bool]:
+    def _get_validator(self) -> Callable[[Any], bool]:
         """
         Get item validator function depending of instance type.
 
@@ -239,7 +239,7 @@ class Loader(Generic[T]):
         """
         return repr(x).startswith("typing.Type[")
 
-    def _iter_paths(self: "Loader[T]", bases: Iterable[str]) -> Iterable[str]:
+    def _iter_paths(self, bases: Iterable[str]) -> Iterable[str]:
         """
         Iterate over all paths.
 
@@ -266,7 +266,7 @@ class Loader(Generic[T]):
                     msg = f"Module '{b}' is not found"
                     raise RuntimeError(msg) from e
 
-    def __getitem__(self: "Loader[T]", name: str) -> T:
+    def __getitem__(self, name: str) -> T:
         """
         Get plugin by name.
 
@@ -286,7 +286,7 @@ class Loader(Generic[T]):
             raise KeyError(name)
         return kls
 
-    def __iter__(self: "Loader[T]") -> Iterator[str]:
+    def __iter__(self) -> Iterator[str]:
         """
         Iterate over plugin names.
 
@@ -303,12 +303,10 @@ class Loader(Generic[T]):
         return iter(self.keys())
 
     @overload
-    def get(self: "Loader[T]", name: str) -> Optional[T]: ...
+    def get(self, name: str) -> Optional[T]: ...
     @overload
-    def get(self: "Loader[T]", name: str, default: T) -> T: ...
-    def get(
-        self: "Loader[T]", name: str, default: Optional[T] = None
-    ) -> Optional[T]:
+    def get(self, name: str, default: T) -> T: ...
+    def get(self, name: str, default: Optional[T] = None) -> Optional[T]:
         """
         Get plugin by name.
 
@@ -329,7 +327,7 @@ class Loader(Generic[T]):
             return default
         return None
 
-    def _get_item(self: "Loader[T]", name: str) -> Optional[T]:
+    def _get_item(self, name: str) -> Optional[T]:
         """
         Get plugin by name.
 
@@ -358,7 +356,7 @@ class Loader(Generic[T]):
                     return kls
         return None
 
-    def _find_item(self: "Loader[T]", name: str) -> Optional[T]:
+    def _find_item(self, name: str) -> Optional[T]:
         """
         Get plugin item from module `name`.
 
@@ -390,7 +388,7 @@ class Loader(Generic[T]):
             pass
         return None
 
-    def keys(self: "Loader[T]") -> Iterable[str]:
+    def keys(self) -> Iterable[str]:
         """
         Iterate over plugin name.
 
@@ -408,7 +406,7 @@ class Loader(Generic[T]):
                 seen.add(mi.name)
         yield from sorted(seen)
 
-    def values(self: "Loader[T]") -> Iterable[T]:
+    def values(self) -> Iterable[T]:
         """
         Iterate all found plugin items.
 
@@ -423,7 +421,7 @@ class Loader(Generic[T]):
             if item is not None:
                 yield item
 
-    def items(self: "Loader[T]") -> Iterable[Tuple[str, T]]:
+    def items(self) -> Iterable[Tuple[str, T]]:
         """
         Iterate the (`name`, `item`) tuples for all plugin items.
 

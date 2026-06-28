@@ -69,7 +69,7 @@ def test_get_none(loader: LoaderType) -> None:
 class DefaultPlugin(BasePlugin):
     name = "default"
 
-    def get_name(self: "DefaultPlugin") -> str:
+    def get_name(self) -> str:
         return self.name
 
 
