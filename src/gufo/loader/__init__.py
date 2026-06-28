@@ -68,14 +68,7 @@ import inspect
 from collections.abc import Callable, Iterable, Iterator
 from pkgutil import iter_modules
 from threading import RLock
-from typing import (
-    Any,
-    Generic,
-    TypeVar,
-    cast,
-    get_args,
-    overload,
-)
+from typing import Any, Generic, TypeVar, cast, get_args, get_origin, overload
 
 __version__: str = "1.0.5"
 T = TypeVar("T")
@@ -231,7 +224,7 @@ class Loader(Generic[T]):
         Note:
             Internal method. Must not be used directly.
         """
-        return repr(x).startswith("typing.Type[")
+        return get_origin(x) is type
 
     def _iter_paths(self, bases: Iterable[str]) -> Iterable[str]:
         """
