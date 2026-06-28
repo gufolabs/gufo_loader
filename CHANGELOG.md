@@ -21,6 +21,10 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 +loader = Loader[type[BasePlugin]](base="myapp.plugins")
 ```
 
+### Changed
+
+* Loader implementation moved to loader.py.
+
 ### Removed
 
 * Python 3.9 support.
