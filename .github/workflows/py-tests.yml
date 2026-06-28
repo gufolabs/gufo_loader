@@ -25,16 +25,16 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set Up Python 3.14
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.14"
 
       # Cache dependencies
       - name: Cache Dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ./.pip
           key: ${{ runner.os }}-lint-3.14-${{ hashFiles('pyproject.toml') }}
@@ -59,16 +59,16 @@ jobs:
     needs: py-lint
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set Up Python 3.14
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.14"
 
       # Cache dependencies
       - name: Cache Dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ./.pip
           key: ${{ runner.os }}-tests-coverage-3.14-${{ hashFiles('./pyproject.toml') }}
@@ -97,16 +97,16 @@ jobs:
         python-version: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set Up Python {{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 
       # Cache dependencies
       - name: Cache Dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ./.pip
           key: ${{ runner.os }}-tests-{{ matrix.python-version }}-${{ hashFiles('pyproject.toml') }}
@@ -131,10 +131,10 @@ jobs:
       id-token: write
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set Up Python 3.14
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.14"
 
