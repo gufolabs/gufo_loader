@@ -137,8 +137,8 @@ ipython = [
   "ipython==9.6.0",
 ]
 lint = [
-  "mypy==1.18.2",
-  "ruff==0.14.0",
+  "mypy==2.1.0",
+  "ruff==0.15.18",
   "types-PyYAML==6.0.12.3",
 ]
 test = [
