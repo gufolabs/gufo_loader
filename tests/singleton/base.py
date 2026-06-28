@@ -5,7 +5,7 @@
 # ---------------------------------------------------------------------
 
 
-class BasePlugin(object):
+class BasePlugin:
     name: str
 
     def get_name(self) -> str:

@@ -8,7 +8,6 @@
 import os
 import subprocess
 import sys
-from typing import List
 
 # Third-party modules
 import pytest
@@ -25,7 +24,7 @@ import pytest
         ("subclass", ["sub", "2", "1"], "1"),
     ],
 )
-def test_example(example: str, args: List[str], expected: str) -> None:
+def test_example(example: str, args: list[str], expected: str) -> None:
     python = sys.executable
     r = subprocess.run(
         [python, "-m", "myapp", *args],

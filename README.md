@@ -54,7 +54,7 @@ Examples:
 
     Plugins as the subclasses:
 
-        loader = Loader[Type[BasePlugin]](base="myproject.plugins")
+        loader = Loader[type[BasePlugin]](base="myproject.plugins")
 
     Plugins as the singletones:
 

@@ -61,31 +61,30 @@ First, lets define the application's core:
 
 Lets explain the code:
 
-``` py title="__main__.py" linenums="1" hl_lines="1 2"
+``` py title="__main__.py" linenums="1" hl_lines="1"
 --8<-- "examples/subclass/myapp/__main__.py"
 ```
 
-Import the Python modules `sys` and `typing`. We need the `typing` to define the loader's type.
-`sys` is used to parse the CLI argument.
+Import the Python modules `sys` to parse the CLI argument.
 
 !!! warning
 
     We use `sys.argv` only for demonstration purposes. Use `argsparse` or alternatives
     in real-world applications.
 
-``` py title="__main__.py" linenums="1" hl_lines="4"
+``` py title="__main__.py" linenums="1" hl_lines="3"
 --8<-- "examples/subclass/myapp/__main__.py"
 ```
 
 Import `Loader` class.
 
-``` py title="__main__.py" linenums="1" hl_lines="6"
+``` py title="__main__.py" linenums="1" hl_lines="5"
 --8<-- "examples/subclass/myapp/__main__.py"
 ```
 
 Import `PluginBase` class to define `Loader` type.
 
-``` py title="__main__.py" linenums="1" hl_lines="8"
+``` py title="__main__.py" linenums="1" hl_lines="7"
 --8<-- "examples/subclass/myapp/__main__.py"
 ```
 
@@ -93,28 +92,28 @@ Then let's create a loader instance. You need only one loader instance per each 
 
 Loader is the generic type, so we must pass the exact plugin type. In the subclass scheme
 plugins are classes, derived from the `BasePlugin` class. In Python's typing terms,
-the subclass of `BasePlugin` has the `Type[BasePlugin]` type. We'd placed the type into
+the subclass of `BasePlugin` has the `type[BasePlugin]` type. We'd placed the type into
 the brackets just after the `Loader`.
 
 After defining the plugin's type, we need to initialize the loader itself.
 Loader has several initialization parameters, see [Reference](../reference.md#src.gufo.loader.Loader)
 for details. Here we consider our plugins will be in `plugins` folder of our applications.
 
-``` py title="__main__.py" linenums="1" hl_lines="11"
+``` py title="__main__.py" linenums="1" hl_lines="10"
 --8<-- "examples/subclass/myapp/__main__.py"
 ```
 
 Our `main` function accepts the operation's name and two integer arguments.
 Then it prints the result.
 
-``` py title="__main__.py" linenums="1" hl_lines="12"
+``` py title="__main__.py" linenums="1" hl_lines="11"
 --8<-- "examples/subclass/myapp/__main__.py"
 ```
 
 Loader supports dict-like interface to access the modules. For this example, we will 
 use bracket notation. We use `op` parameter as the plugin name.
 
-``` py title="__main__.py" linenums="1" hl_lines="13"
+``` py title="__main__.py" linenums="1" hl_lines="12"
 --8<-- "examples/subclass/myapp/__main__.py"
 ```
 
@@ -122,20 +121,20 @@ Loader returns the class. We create the instance to show we can use some plugin 
 tasks. We can also define the `execute` method as a `@classmethod` to skip 
 the initialization step.
 
-``` py title="__main__.py" linenums="1" hl_lines="14"
+``` py title="__main__.py" linenums="1" hl_lines="13"
 --8<-- "examples/subclass/myapp/__main__.py"
 ```
 
 Then we call `execute` method of the plugin. Your editor must
 show the `r` variable has the type of `int`
 
-``` py title="__main__.py" linenums="1" hl_lines="15"
+``` py title="__main__.py" linenums="1" hl_lines="14"
 --8<-- "examples/subclass/myapp/__main__.py"
 ```
 
 Then we print the result, and our core function is finally complete.
 
-``` py title="__main__.py" linenums="1" hl_lines="18"
+``` py title="__main__.py" linenums="1" hl_lines="17"
 --8<-- "examples/subclass/myapp/__main__.py"
 ```
 We're extracting our arguments directly from `sys.argv`.
@@ -198,12 +197,12 @@ All we need is to subtract two numbers and return the result. Our plugin is comp
 
 ## Testing
 
-```
+```bash
 $ python3 -m myapp add 1 2
 3
 ```
 
-```
+```bash
 $ python3 -m myapp sub 2 1
 1
 ```

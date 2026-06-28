@@ -89,12 +89,12 @@ from gufo.loader import Loader
 import myplugins.base  # The discovered plugins live in 'myplugins' package
 
 # Generic type parameter 'base.PluginBase' ensures perfect static typing!
-loader: Loader[base.PluginBase] = Loader(
+loader = Loader[base.PluginBase](
     base="myplugins", 
     strict=True  # Fails fast if a module inside 'myplugins' has syntax errors
 )
 
-instance: base.PluginBase = loader["MyPlugin"]  # IDE knows the exact type here
+instance = loader["MyPlugin"]()  # IDE knows the exact type here
 result = instance.process(data="hello")          # Full autocomplete, full mypy support
 ```
 

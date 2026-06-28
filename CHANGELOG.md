@@ -12,6 +12,19 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 
 ## [Unreleased]
 
+### Breaking Changes
+
+* Subclass scheme no longer accepts typing.Type[...]. Use the builtin type[...] syntax instead:
+
+```diff
+-loader = Loader[Type[BasePlugin]](base="myapp.plugins")
++loader = Loader[type[BasePlugin]](base="myapp.plugins")
+```
+
+### Removed
+
+* Python 3.9 support.
+
 ### Infrastructure
 
 * Ruff 0.15.18

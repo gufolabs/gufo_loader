@@ -5,17 +5,17 @@
 # ---------------------------------------------------------------------
 
 
-class Trash(object): ...
+class Trash: ...
 
 
 TRASH_VAR = 1
 
 
-class CPlugin(object):
+class CPlugin:
     name = "c"
 
     def get_name(self) -> str:
         return self.name
 
 
-class ATrash2(object): ...
+class ATrash2: ...

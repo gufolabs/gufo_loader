@@ -52,16 +52,16 @@ all_plugins = discover_plugins()  # eager scan on import!
 **After (Gufo Loader)**:
 ```python
 from gufo.loader import Loader
-import myapp.plugins.base
+from myapp.plugins.base import BasePlugin
 
-loader = Loader(
+loader = Loader[BasePlugin](
     base="myapp.plugins",
     strict=False  # Continue on errors (default); set True to fail fast
 )
 
 # Lazy loading — modules aren't imported until you actually call get() or values()
-instance: BasePlugin = loader["auth"]     # First access triggers import + cache
-cached_again: BasePlugin = loader["auth"] # Returned from cache immediately
+instance = loader["auth"]     # First access triggers import + cache
+cached_again= loader["auth"] # Returned from cache immediately
 ```
 
 ### 2. Type-Safe Retrieval
@@ -83,10 +83,10 @@ def get_auth_plugin(all_plugins: Dict[str, Any]) -> None:
 from gufo.loader import Loader
 import myapp.plugins.base as base
 
-loader: Loader[base.Authenticator] = Loader(base="myapp.plugins.auth")
+loader = Loader[base.Authenticator](base="myapp.plugins.auth")
 
 plugin = loader["auth"]          # ✅ Type is Authenticator everywhere!
-result: User = plugin.authenticate(user="admin")  # ✅ Full type checking
+result = plugin.authenticate(user="admin")  # ✅ Full type checking
 ```
 
 ### 3. Handling Defaults and Missing Plugins
@@ -103,7 +103,7 @@ if plugin is not None:
 
 **After (Gufo Loader)**:
 ```python
-loader: Loader[base.Authenticator] = Loader(base="myapp.plugins.auth")
+loader = Loader[base.Authenticator](base="myapp.plugins.auth")
 
 # If 'auth' is missing, returns the default (or None):
 plugin = loader.get("auth", base.Authenticator(None))  # fallback instance

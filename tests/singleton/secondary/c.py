@@ -7,7 +7,7 @@
 from ..base import BasePlugin
 
 
-class Trash(object): ...
+class Trash: ...
 
 
 TRASH_VAR = 1
@@ -20,7 +20,7 @@ class CPlugin(BasePlugin):
         return self.name
 
 
-class ATrash2(object): ...
+class ATrash2: ...
 
 
 a_trash_singleton = ATrash2()

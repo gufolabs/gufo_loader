@@ -6,7 +6,7 @@ integer arguments, perform the operation and print the result.
 
 I.e.
 
-```
+```bash
 $ python -m myapp add 1 2
 3
 ```

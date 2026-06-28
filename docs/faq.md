@@ -15,7 +15,7 @@ You can use `__import__` manually, but you will quickly need to write boilerplat
 
 ### Which Python versions are supported?
 
-Python 3.9 and later. The test matrix covers Python 3.9 through 3.14. There are no external runtime dependencies beyond the standard library.
+Python 3.10 and later. The test matrix covers Python 3.10 through 3.14. There are no external runtime dependencies beyond the standard library.
 
 ### How does static typing work across plugin boundaries?
 
@@ -25,7 +25,7 @@ The `Loader[T]` class is parameterized with a specific type (e.g., `Type[BasePlu
 
 ### What are the three loading schemes?
 
-1. **Subclass** (`Loader[Type[Base]]`) — yields plugin classes inheriting from `Base`. You instantiate them yourself when needed.
+1. **Subclass** (`Loader[type[Base]]`) — yields plugin classes inheriting from `Base`. You instantiate them yourself when needed.
 2. **Singleton** (`Loader[Base]`) — yields initialized plugin instances. If a name is requested twice, the same instance is reused.
 3. **Protocol** (`Loader[MyProtocol]`) — yields objects that structurally satisfy `MyProtocol` (decorated with `@runtime_checkable`). Use this when you cannot change the plugin source code to inherit a base class.
 
