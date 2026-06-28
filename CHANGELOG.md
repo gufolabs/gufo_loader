@@ -12,6 +12,10 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 
 ## [Unreleased]
 
+### Removed
+
+* Python 3.9 support.
+
 ### Infrastructure
 
 * Ruff 0.15.18

@@ -1,3 +1,3 @@
-class SubPlugin(object):
+class SubPlugin:
     def execute(self, x: int, y: int) -> int:
         return x - y

@@ -5,7 +5,7 @@
 # ---------------------------------------------------------------------
 
 
-class APlugin(object):
+class APlugin:
     name = "a"
 
     def get_name(self) -> str:

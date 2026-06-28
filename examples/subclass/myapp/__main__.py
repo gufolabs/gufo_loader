@@ -1,11 +1,10 @@
 import sys
-from typing import Type
 
 from gufo.loader import Loader
 
 from .base import BasePlugin
 
-loader = Loader[Type[BasePlugin]](base="myapp.plugins")
+loader = Loader[type[BasePlugin]](base="myapp.plugins")
 
 
 def main(op: str, x: int, y: int) -> None:

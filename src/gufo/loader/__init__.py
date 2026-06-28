@@ -42,7 +42,7 @@ Example:
     Plugins as the subclasses:
 
     ``` py
-    loader = Loader[Type[BasePlugin]](base="myproject.plugins")
+    loader = Loader[type[BasePlugin]](base="myproject.plugins")
     ```
 
 Example:
@@ -56,7 +56,7 @@ Example:
     Plugins as the protocols:
 
     ``` py
-    loader = Loader[Type[MyProtocol]](base="myproject.plugins")
+    loader = Loader[type[MyProtocol]](base="myproject.plugins")
     ```
 
 Attributes:
@@ -65,18 +65,12 @@ Attributes:
 
 # Python modules
 import inspect
+from collections.abc import Callable, Iterable, Iterator
 from pkgutil import iter_modules
 from threading import RLock
 from typing import (
     Any,
-    Callable,
-    Dict,
     Generic,
-    Iterable,
-    Iterator,
-    Optional,
-    Set,
-    Tuple,
     TypeVar,
     cast,
     get_args,
@@ -105,15 +99,15 @@ class Loader(Generic[T]):
 
     def __init__(
         self,
-        base: Optional[str] = None,
-        bases: Optional[Iterable[str]] = None,
+        base: str | None = None,
+        bases: Iterable[str] | None = None,
         strict: bool = False,
-        exclude: Optional[Iterable[str]] = None,
+        exclude: Iterable[str] | None = None,
     ) -> None:
         # Pass to generic
         super().__init__()
         self.strict = strict
-        self._validate: Optional[Callable[[Any], bool]] = None
+        self._validate: Callable[[Any], bool] | None = None
         # Check settinngs
         if base is not None and bases is None:
             self._bases = [base]
@@ -127,9 +121,9 @@ class Loader(Generic[T]):
         if not self._paths:
             msg = "No valid bases"
             raise RuntimeError(msg)
-        self._classes: Dict[str, T] = {}  # name -> class
+        self._classes: dict[str, T] = {}  # name -> class
         self._lock = RLock()
-        self._exclude: Set[str] = set(exclude or [])
+        self._exclude: set[str] = set(exclude or [])
 
     def _get_item_type(self) -> T:
         """
@@ -205,7 +199,7 @@ class Loader(Generic[T]):
         Used for subclass scheme. i.e.
 
         ``` py
-        Loader[Type[BaseClass]](...)
+        Loader[type[BaseClass]](...)
         ```
 
         Args:
@@ -303,10 +297,10 @@ class Loader(Generic[T]):
         return iter(self.keys())
 
     @overload
-    def get(self, name: str) -> Optional[T]: ...
+    def get(self, name: str) -> T | None: ...
     @overload
     def get(self, name: str, default: T) -> T: ...
-    def get(self, name: str, default: Optional[T] = None) -> Optional[T]:
+    def get(self, name: str, default: T | None = None) -> T | None:
         """
         Get plugin by name.
 
@@ -327,7 +321,7 @@ class Loader(Generic[T]):
             return default
         return None
 
-    def _get_item(self, name: str) -> Optional[T]:
+    def _get_item(self, name: str) -> T | None:
         """
         Get plugin by name.
 
@@ -356,7 +350,7 @@ class Loader(Generic[T]):
                     return kls
         return None
 
-    def _find_item(self, name: str) -> Optional[T]:
+    def _find_item(self, name: str) -> T | None:
         """
         Get plugin item from module `name`.
 
@@ -400,7 +394,7 @@ class Loader(Generic[T]):
         Note:
             `keys()` do not force plugin module loading and instantiation.
         """
-        seen: Set[str] = set()
+        seen: set[str] = set()
         for mi in iter_modules(self._paths):
             if mi.name not in seen and mi.name not in self._exclude:
                 seen.add(mi.name)
@@ -421,7 +415,7 @@ class Loader(Generic[T]):
             if item is not None:
                 yield item
 
-    def items(self) -> Iterable[Tuple[str, T]]:
+    def items(self) -> Iterable[tuple[str, T]]:
         """
         Iterate the (`name`, `item`) tuples for all plugin items.
 

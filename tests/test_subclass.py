@@ -5,7 +5,6 @@
 # ---------------------------------------------------------------------
 
 # Python modules
-from typing import Type
 
 # Third-party modules
 import pytest
@@ -16,12 +15,12 @@ from gufo.loader import Loader
 from .subclass.base import BasePlugin
 
 PLUGIN_BASES = ["tests.subclass.primary", "tests.subclass.secondary"]
-LoaderType = Loader[Type[BasePlugin]]
+LoaderType = Loader[type[BasePlugin]]
 
 
 @pytest.fixture(scope="module")
 def loader() -> LoaderType:
-    return Loader[Type[BasePlugin]](bases=PLUGIN_BASES)
+    return Loader[type[BasePlugin]](bases=PLUGIN_BASES)
 
 
 @pytest.mark.parametrize(

@@ -1,7 +1,7 @@
 # Gufo Loader - Project Reference for Agents
 
 ## Overview
-**Gufo Loader** — generic Python class loader for robust plugin infrastructure. Part of [Gufo Stack](https://docs.gufolabs.com/) by Gufo Labs. Provides dict-like singleton API for late-loading plugins from one or many plugin packages. Supports three schemes: subclasses, singletons (instances), and protocols. Version: 1.0.4. Python >= 3.9. BSD-3-Clause.
+**Gufo Loader** — generic Python class loader for robust plugin infrastructure. Part of [Gufo Stack](https://docs.gufolabs.com/) by Gufo Labs. Provides dict-like singleton API for late-loading plugins from one or many plugin packages. Supports three schemes: subclasses, singletons (instances), and protocols. Python >= 3.10. BSD-3-Clause.
 
 ## Architecture
 
@@ -23,7 +23,7 @@ Source is entirely in `src/gufo/loader/__init__.py` (~433 lines). No submodules.
 
 ### Plugin Schemes
 Three modes distinguished by generic parameter:
-- **Subclass**: `Loader[Type[BasePlugin]](base="...")` — yields classes inheriting from BasePlugin.
+- **Subclass**: `Loader[type[BasePlugin]](base="...")` — yields classes inheriting from BasePlugin.
 - **Singleton**: `Loader[BaseClass](base="...")` — yields instances of BaseClass.
 - **Protocol**: `Loader[MyProtocol](base="...")` — checks via isinstance against protocol base class. Protocol classes must be decorated with `@runtime_checkable` (from typing module), otherwise this works only for structural duck-typing at load time without type enforcement. Does NOT use Type wrapper like Subclass scheme.
 
@@ -140,7 +140,7 @@ python -m build --sdist --wheel
 ```
 
 ## CI Workflows (.github/workflows/)
-- **py-tests.yml** — lint job (ruff format + ruff check + mypy), test-coverage job (pytest -v --cov --cov-branch → upload to Codecov), test-matrix job (Python 3.9–3.14), publish job (tagged only, PyPI via pypa/gh-action-pypi-publish).
+- **py-tests.yml** — lint job (ruff format + ruff check + mypy), test-coverage job (pytest -v --cov --cov-branch → upload to Codecov), test-matrix job (Python 3.10–3.14), publish job (tagged only, PyPI via pypa/gh-action-pypi-publish).
 - **build-docs.yml** — mkdocs gh-deploy on master when docs/examples/py/md files change. Site: docs.gufolabs.com/gufo_loader/.
 - **codeql.yml** — CodeQL analysis (python + actions languages) on push/PRs to master for src/ and workflows only.
 - **security.yml** — manual-only workflow running pyupio/safety-action for dependency vulnerability scanning. Requires `SAFETY_API_KEY` secret.
@@ -149,7 +149,7 @@ python -m build --sdist --wheel
 Triggered manually via the security.yml workflow described above. API key: SAFETY_API_KEY secret.
 
 ## Development Conventions
-- Python 3.9+ target, tested on 3.9–3.14 (no mypy typing issues).
+- Python 3.10+ target, tested on 3.10–3.14 (no mypy typing issues).
 - Single-file src module — Loader is entirely in `src/gufo/loader/__init__.py`. Do not split without good reason; the class is cohesive and testable as-is.
 - Thread-safe via Lock on `_get_item()` (caching path). Note: lock held during `__import__()`; recursive plugin deps could deadlock. No global state beyond instance attributes.
 - Lazy loading — plugins are loaded/instantiated on first `get(name)` call, cached in `self._classes`.

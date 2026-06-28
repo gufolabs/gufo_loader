@@ -5,7 +5,7 @@
 # ---------------------------------------------------------------------
 
 
-class BPlugin(object):
+class BPlugin:
     name = "b?"
 
     def get_name(self) -> str:
