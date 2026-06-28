@@ -8,5 +8,5 @@
 class BasePlugin(object):
     name: str
 
-    def get_name(self: "BasePlugin") -> str:
+    def get_name(self) -> str:
         raise NotImplementedError

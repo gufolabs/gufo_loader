@@ -14,7 +14,7 @@ TRASH_VAR = 1
 class CPlugin(object):
     name = "c"
 
-    def get_name(self: "CPlugin") -> str:
+    def get_name(self) -> str:
         return self.name
 
 
