@@ -1,6 +1,6 @@
 # Gufo Loader
 
-*Generic Python class loader for robust plugin infrastructure*.
+*Typed runtime object resolution for Python.*
 
 [![PyPi version](https://img.shields.io/pypi/v/gufo_loader.svg)](https://pypi.python.org/pypi/gufo_loader/)
 ![Downloads](https://img.shields.io/pypi/dw/gufo_loader)
@@ -19,61 +19,111 @@
 
 ---
 
-Loader delivers plugins from one or many plugin packages.
+Gufo Loader provides tools to resolve Python objects at runtime from string identifiers with full typing and IDE support.
+
+It is designed for applications where object selection is driven by configuration or runtime state.
+
+## Two resolution models
+
+Gufo Loader supports two complementary ways to resolve Python objects.
+
+```text
+          String identifier
+                 │
+      ┌──────────┴──────────┐
+      │                     │
+ Full import path      Logical name
+      │                     │
+ImportPathResolver        Loader
+      └──────────┬──────────┘
+                 │
+          Python object
+```          
+
+### Direct resolution (full import path)
+A Python object is identified by its fully qualified import path. 
+
+```python
+"myproject.handlers.process"
+```
+
+Use `ImportPathResolver`:
+```python
+resolver = ImportPathResolver[Callable[..., Any]]()
+handler = resolver("myproject.handlers.process")
+```
+
+Use this when the exact location of the object is known.
+
+### Named resolution (logical name)
+A Python object is referenced by a short logical name:
+```python
+"json"
+```
+
+The system resolves it to a concrete implementation. Use `Loader`:
+```python
+loader = Loader[type[BasePlugin]](base="myproject.plugins")
+plugin = loader["json"]
+```
+Use this when behavior is selected by configuration or convention.
+
+## ImportPathResolver
+
+Resolves full Python import paths into objects.
+
+```python
+resolver("package.module.symbol")
+```
+
+**Properties:**
+
+- works with any Python object
+- caching of successful resolutions
+- optional negative caching
+- strict typing support
+- safe, deterministic import behavior
 
 ## Loader
+Loader discovers and resolves typed objects from one or more Python packages.
 
-Loader is the _dict_-like singleton providing the following services:
+It supports three plugin models:
 
-* plugin initialization and fetching.
-* plugins enumeration.
+**Class-based plugins**
+```python
+Loader[type[BasePlugin]]
+```
 
-Plugins are not dependent on the loader and do not need any registration
-process. The loaders are lazy by nature, meaning the plugin will be imported 
-and initialized just in time when the user code requests the plugin.
+**Singleton instances**
+```python
+Loader[BasePlugin]
+```
 
-## Plugins
+**Protocol-based plugins**
+```python
+Loader[MyProtocol]
+```
 
-Plugins are named entities dedicated to the given task. Each plugin
-is defined in its python module. Depending on the loader settings
-plugins can be:
+**Properties:**
 
-* *Instances*: Singleton instances having the class as the ancestor.
-* *Subclasses*: Classes having the common ancestor.
-* *Protocols*: Classes following the set of methods.
+- subclasses, instances and protocols
+- no registration
+- multiple package namespaces
+- lazy discovery
+- type validation
+- predictable resolution behavior
 
-## Plugin Packages
+## Features
 
-Plugin packages are plain Python packages: the directory containing
-python files with plugins and the empty `__init__.py` file.
-
-Plugin name must match the module name. For example, module
-`my_plugin.py` will define the plugin `my_plugin`.
-
-Examples:
-
-    Plugins as the subclasses:
-
-        loader = Loader[type[BasePlugin]](base="myproject.plugins")
-
-    Plugins as the singletones:
-
-        loader = Loader[BasePlugin](base="myproject.plugins")
-
-    Plugins as the protocols:
-
-        loader = Loader[MyProtocol](base="myproject.plugins")
-
-## Virtues
-
-* Clean dict-like API.
-* Full abstraction from the plugin internals.
-* Custom plugins.
-* Built with security in mind.
-* Full Python typing support.
-* Editor completion.
-* Well-tested, battle-proven code.
-* 100% test coverage.
+- **Zero dependencies** — no external runtime dependencies
+- **Fully typed API** — generics, protocols, subclass-safe resolution
+- **IDE-friendly** — autocompletion and static type inference support
+- **Lazy loading** — modules imported only when needed
+- **Caching** — resolved objects are cached for performance
+- **Negative caching** — failed resolutions are cached to avoid repeated lookups
+- **Secure by design** — only explicit Python imports are performed
+- **Deterministic behavior** — predictable resolution for identical inputs
+- **Multi-package support** — load plugins from multiple namespaces
 
 ## On Gufo Stack
 

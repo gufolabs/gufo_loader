@@ -21,6 +21,10 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 +loader = Loader[type[BasePlugin]](base="myapp.plugins")
 ```
 
+### Added
+
+* ImportPathResolver for direct name resolution.
+
 ### Changed
 
 * Loader implementation moved to loader.py.

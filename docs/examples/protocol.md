@@ -1,6 +1,6 @@
 # Protocol Scheme
 
-The *protocol* scheme is similar with the [subclass](subclass.md) one,
+The *protocol* scheme is similar to the [subclass](subclass.md) one,
 except for one point: instead of using and inheriting the base class,
 we define the *Protocol*.
 
@@ -57,7 +57,7 @@ All protocol functions are abstract, so we add `...` operator to skip the implem
 --8<-- "examples/protocol/myapp/base.py"
 ```
 
-Our main function of the plugin, do not to forget to place the proper type hints to allow
+Our main function of the plugin, don't forget to place the proper type hints to allow
 static type checking.
 
 ```  py title="base.py" linenums="1" hl_lines="11"
@@ -125,7 +125,7 @@ the brackets just after the `Loader`.
     not `PluginProtocol`.
 
 After defining the plugin's type, we need to initialize the loader itself.
-Loader has several initialization parameters, see [Reference](../reference.md#src.gufo.loader.Loader)
+Loader has several initialization parameters, see [Reference](../reference.md#gufo.loader.Loader)
 for details. Here we consider our plugins will be in `plugins` folder of our applications.
 
 ``` py title="__main__.py" linenums="1" hl_lines="10"

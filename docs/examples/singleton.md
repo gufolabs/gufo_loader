@@ -19,7 +19,7 @@ First, let's define the plugins base class just like in
 The code is straightforward
 
 ```  py title="base.py" linenums="1" hl_lines="1"
---8<-- "examples/subclass/myapp/base.py"
+--8<-- "examples/singleton/myapp/base.py"
 ```
 In this module, we define an abstract class. It does not provide an actual implementation
 but rather specifies an interface. The established practice in Python is to derive
@@ -101,7 +101,7 @@ Loader is the generic type, so we must pass the exact plugin type. The instances
 the brackets just after the `Loader`.
 
 After defining the plugin's type, we need to initialize the loader itself.
-Loader has several initialization parameters, see [Reference](../reference.md#src.gufo.loader.Loader)
+Loader has several initialization parameters, see [Reference](../reference.md#gufo.loader.Loader)
 for details. Here we consider our plugins will be in `plugins` folder of our applications.
 
 ``` py title="__main__.py" linenums="1" hl_lines="10"

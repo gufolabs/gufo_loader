@@ -16,6 +16,7 @@ The primary advantages of migrating are:
 
 *   [Migrating from Pluggy](pluggy.md) — replacing `pluggy` entry points with a type-safe generator API.
 *   [Migrating from `importlib`](importlib.md) — dropping manual path scanning (with `pkgutil`) in favor of generic, lazy-loaded discovery.
+*   [Migrating from Django `import_string`](django.md) — replacing Django's `import_string` utility with a fully typed, cached `ImportPathResolver`.
 
 !!! note "Benefits for AI agents"
 

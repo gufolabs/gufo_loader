@@ -16,6 +16,8 @@ import pytest
 @pytest.mark.parametrize(
     ("example", "args", "expected"),
     [
+        ("resolver", ["add", "1", "2"], "3"),
+        ("resolver", ["sub", "2", "1"], "1"),
         ("protocol", ["add", "1", "2"], "3"),
         ("protocol", ["sub", "2", "1"], "1"),
         ("singleton", ["add", "1", "2"], "3"),

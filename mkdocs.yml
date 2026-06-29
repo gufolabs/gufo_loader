@@ -12,6 +12,7 @@ nav:
   - Reference: reference.md
   - Examples:
       - Overview: examples/index.md
+      - Direct Path: examples/resolver.md
       - Subclass Scheme: examples/subclass.md
       - Protocol Scheme: examples/protocol.md
       - Singleton Scheme: examples/singleton.md
@@ -19,6 +20,7 @@ nav:
       - Overview: migrating/index.md
       - From pluggy: migrating/pluggy.md
       - From importlib: migrating/importlib.md
+      - From Django's import_string: migraing/django.md
   - Developers' Guide:
       - Overview: dev/index.md
       - Developer's Environment: dev/environment.md
@@ -81,7 +83,11 @@ markdown_extensions:
       anchor_linenums: True
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.emoji:
