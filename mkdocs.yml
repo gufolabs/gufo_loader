@@ -20,7 +20,7 @@ nav:
       - Overview: migrating/index.md
       - From pluggy: migrating/pluggy.md
       - From importlib: migrating/importlib.md
-      - From Django's import_string: migraing/django.md
+      - From Django's import_string: migrating/django.md
   - Developers' Guide:
       - Overview: dev/index.md
       - Developer's Environment: dev/environment.md
