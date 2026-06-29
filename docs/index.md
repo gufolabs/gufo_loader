@@ -105,6 +105,6 @@ To do this, we extract the key technologies that have proven themselves in the [
 
 [Gufo Stack] makes the [NOC] better, and this is our primary task. But other products can benefit from [Gufo Stack] too. So we believe that our effort will make the other network management products better.
 
-[gufo labs]: https://gufolabs.com/
-[gufo stack]: https://docs.gufolabs.com/
-[noc]: https://getnoc.com/
+[Gufo Labs]: https://gufolabs.com/
+[Gufo Stack]: https://docs.gufolabs.com/
+[NOC]: https://getnoc.com/
