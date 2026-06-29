@@ -86,5 +86,5 @@ Attributes:
 from .loader import Loader
 from .resolver import ImportPathResolver
 
-__version__: str = "1.0.5"
+__version__: str = "2.0.0"
 __all__ = ["ImportPathResolver", "Loader"]
