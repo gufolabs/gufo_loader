@@ -118,7 +118,7 @@ classifiers = [
   "Operating System :: OS Independent",
   "Typing :: Typed",
 ]
-description = "Generic Python class loader for robust plugin infrastructure"
+description = "Typed runtime object resolution for Python"
 dynamic = ["version"]
 keywords = ["loader", "plugin"]
 license = "BSD-3-Clause"
