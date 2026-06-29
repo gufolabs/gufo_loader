@@ -148,4 +148,4 @@ Keep `import_string` if:
 * You don't need static typing on the resolved objects (e.g., one-off scripts).
 * Adding `gufo_loader` as a dependency is overkill for your use case — `import_string` works with zero extra dependencies.
 
-[ImportPathResolver]: ../reference.md#importpathresolver
+[ImportPathResolver]: ../reference.md#gufo.loader.ImportPathResolver
