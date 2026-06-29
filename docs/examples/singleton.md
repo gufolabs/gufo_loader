@@ -19,7 +19,7 @@ First, let's define the plugins base class just like in
 The code is straightforward
 
 ```  py title="base.py" linenums="1" hl_lines="1"
---8<-- "examples/subclass/myapp/base.py"
+--8<-- "examples/singleton/myapp/base.py"
 ```
 In this module, we define an abstract class. It does not provide an actual implementation
 but rather specifies an interface. The established practice in Python is to derive
