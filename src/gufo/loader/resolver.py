@@ -25,7 +25,8 @@ class ImportPathResolver(Generic[T]):
     Resolve Python objects by import path.
 
     This resolver converts dot-separated import paths into Python objects
-    using importlib, with optional caching and support for already resolved values.
+    using importlib, with optional caching and support
+    for already resolved values.
 
     Both successful and (optionally) failed resolutions are cached:
     - Successful imports cache the resolved object.
