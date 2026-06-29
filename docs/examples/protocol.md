@@ -1,6 +1,6 @@
 # Protocol Scheme
 
-The *protocol* scheme is similar with the [subclass](subclass.md) one,
+The *protocol* scheme is similar to the [subclass](subclass.md) one,
 except for one point: instead of using and inheriting the base class,
 we define the *Protocol*.
 
@@ -57,7 +57,7 @@ All protocol functions are abstract, so we add `...` operator to skip the implem
 --8<-- "examples/protocol/myapp/base.py"
 ```
 
-Our main function of the plugin, do not to forget to place the proper type hints to allow
+Our main function of the plugin, don't forget to place the proper type hints to allow
 static type checking.
 
 ```  py title="base.py" linenums="1" hl_lines="11"
