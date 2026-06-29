@@ -121,7 +121,21 @@ classifiers = [
 ]
 description = "Typed runtime object resolution for Python"
 dynamic = ["version"]
-keywords = ["loader", "plugin"]
+keywords = [
+  "import",
+  "importlib",
+  "dynamic-import",
+  "plugin-system",
+  "plugins",
+  "service-loader",
+  "dependency-injection",
+  "registry",
+  "runtime-resolution",
+  "lazy-loading",
+  "callable-resolution",
+  "type-safety",
+  "protocols",
+]
 license = "BSD-3-Clause"
 name = "gufo_loader"
 requires-python = ">=3.10"

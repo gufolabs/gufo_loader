@@ -6,20 +6,26 @@
 ## Architecture
 
 ### Core Engine
-Source is entirely in `src/gufo/loader/__init__.py` (~433 lines). No submodules.
+Source in `src/gufo/loader/`: Loader class module (`loader.py`), ImportPathResolver module (`resolver.py`) + exports (`__init__.py`). Max 3 files total.
 
-**Loader[T]** — generic class implementing dict-like singleton loader:
-- `__init__(base, bases, strict, exclude)` — base/bases mutually exclusive; both optional (neither = no error until validation). Sets `_paths` via `_iter_paths()`, initializes `_classes={}`, `_lock` (threading.Lock), `_exclude=set`.
+**Loader[T]** — generic class implementing dict-like singleton loader (in `loader.py`):
+- `__init__(base, bases, strict, exclude)` — base/bases mutually exclusive; both optional (neither = no error until validation). Sets `_paths` via `_iter_paths()`, initializes `_classes={}`, `_lock` (threading.RLock), `_exclude=set`.
 - `_get_item_type()` → `T` — extracts generic type arg from `__orig_class__` via `get_args()`.
 - `_get_validator()` → `Callable[[Any], bool]` — cached on `_validate`. Distinguishes Type[Class] (subclass validation) vs Class (instance validation).
-- `_is_type(x)` → checks `repr(x).startswith("typing.Type[")`.
+- `_is_type(x)` — checks `get_origin(x) is type`.
 - `_is_instance_validator(t)` — returns `lambda x: isinstance(x, t)`.
 - `_is_subclass_validator(t)` — returns `lambda x: issubclass(x, t)`.
 - `_iter_paths(bases)` — yields `__import__(b, {}, {}, "*").__path__[0]` for each base. Raises if strict and ModuleNotFoundError.
 - `get(name, default=...)` → first calls `_get_item()`, then returns default or None. Note: falsy defaults (e.g. `get(name, "")`) may return None due to `if default is not None` check — use explicit sentinel if needed.
-- `_get_item(name)` — lazy loading: checks `_exclude`, locks, checks cache, iterates `self._bases` trying `_find_item(f"{b}.{name}")`. Caches in `_classes[name]` on success. Thread-safe via Lock.
+- `_get_item(name)` — lazy loading: checks `_exclude`, locks, checks cache, iterates `self._bases` trying `_find_item(f"{b}.{name}")`. Caches in `_classes[name]` on success. Thread-safe via RLock (supports recursive plugin deps without deadlock).
 - `_find_item(name)` — imports module, uses `inspect.getmembers(module)`, filters members by same module, validates with validator. Returns first match or None.
 - `[__getitem__, __iter__, keys, values, items]` — dict-like interface. `keys()` uses `pkgutil.iter_modules(self._paths)` (no loading). `values()/items()` iterate all names and call `get()` (forces loading/instantiation).
+
+**ImportPathResolver[T]** (in `resolver.py`) — resolves dotted import strings (`"package.module.attr"`) to objects via `importlib`. Features:
+- `__call__(path)` — accepts string path or pre-resolved object (returned as-is)
+- Optional negative caching for failed lookups (`cache_negative=True` by default)
+- Idempotent for string inputs
+- Raises `ValueError` for malformed paths, `ImportError` on lookup failure
 
 ### Plugin Schemes
 Three modes distinguished by generic parameter:
@@ -30,8 +36,10 @@ Three modes distinguished by generic parameter:
 ### Directory Layout
 ```
 gufo_loader/
-├── src/gufo/loader/__init__.py    # core engine (single file, ~433 lines)
-│   └── py.typed                    # PEP-561 marker
+├── src/gufo/loader/                 # core modules
+│   ├── loader.py                    # Loader[T] implementation
+│   ├── resolver.py                  # ImportPathResolver[T] implementation
+│   └── py.typed                     # PEP-561 marker
 ├── tests/                          # pytest suite (100% target)
 │   ├── singleton/, subclass/, protocol/  # each scheme's fixtures
 │   │   ├── base.py                 # common base class
@@ -101,6 +109,15 @@ gufo_loader/
 └── LICENSE.md / CHANGELOG.md       # BSD-3-Clause / Keep a Changelog + SemVer
 ```
 
+## Development Conventions
+- Python 3.10+ target, tested on 3.10–3.14 (no mypy typing issues).
+- Max 3 files in `src/gufo/loader/`: loader.py, resolver.py, __init__.py. No more submodules unless clearly needed; new public API goes into a dedicated file <64 lines.
+- Thread-safe via RLock on `_get_item()` (caching path). RLock allows reentrant locks for recursive plugin deps without deadlock. No global state beyond instance attributes.
+- Lazy loading — plugins loaded/instantiated on first `get(name)` call, cached in `self._classes`.
+- Test naming: `{test_subclass.py, test_singleton.py, test_protocol.py}` for per-scheme tests, plus `test_common.py, test_docs.py, test_ci.py, test_example.py, test_project.py` for shared validation.
+- Each test scheme has primary/secondary subpackages with overlap plugins (a–d) to test priority resolution (primary > secondary). Test fixture dirs include README.md explaining setup.
+- Build backend: setuptools (not hatch/poetry). Version resolved from `gufo.loader.__version__` via dynamic attr in pyproject.toml `[tool.setuptools.dynamic]`.
+
 ## Build, Test, Lint
 
 ### Virtual environment setup
@@ -148,15 +165,6 @@ python -m build --sdist --wheel
 ### Safety check
 Triggered manually via the security.yml workflow described above. API key: SAFETY_API_KEY secret.
 
-## Development Conventions
-- Python 3.10+ target, tested on 3.10–3.14 (no mypy typing issues).
-- Single-file src module — Loader is entirely in `src/gufo/loader/__init__.py`. Do not split without good reason; the class is cohesive and testable as-is.
-- Thread-safe via Lock on `_get_item()` (caching path). Note: lock held during `__import__()`; recursive plugin deps could deadlock. No global state beyond instance attributes.
-- Lazy loading — plugins are loaded/instantiated on first `get(name)` call, cached in `self._classes`.
-- Test naming: `{test_subclass.py, test_singleton.py, test_protocol.py}` for per-scheme tests, plus `test_common.py, test_docs.py, test_ci.py, test_example.py, test_project.py` for shared validation.
-- Each test scheme has primary/secondary subpackages with overlap plugins (a–d) to test priority resolution (primary > secondary). Test fixture dirs include README.md explaining setup.
-- Build backend: setuptools (not hatch/poetry). Version resolved from `gufo.loader.__version__` via dynamic attr in pyproject.toml `[tool.setuptools.dynamic]`.
-
 ## Documentation
 - Source → built target → published URL: `docs/` → `dist/docs/` → docs.gufolabs.com/gufo_loader/.
 - Material theme with deep purple palette + dark slate mode.
@@ -166,4 +174,4 @@ Triggered manually via the security.yml workflow described above. API key: SAFET
 ## Key Files
 - **pyproject.toml** — build config (setuptools dynamic version), ruff settings, coverage, mypy strict mode.
 - **mkdocs.yml** — site config with nav sections for Home, Installation, Reference, Examples, Migrating, Developers' Guide, FAQ.
-- **src/gufo/loader/__init__.py** — single-file engine (~433 lines): Loader[T] class + `__version__`.
+- **src/gufo/loader/** — Loader[T] class (loader.py), ImportPathResolver (resolver.py), exports + version (__init__.py).
