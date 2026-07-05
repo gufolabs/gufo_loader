@@ -36,3 +36,25 @@ def test_getitem(name: str, expected_name: str, loader: LoaderType) -> None:
     assert issubclass(kls, BasePlugin)
     item = kls()
     assert item.get_name() == expected_name
+
+
+class T1:
+    pass
+
+
+class T2(T1):
+    pass
+
+
+class T3:
+    pass
+
+
+@pytest.mark.parametrize(
+    ("x", "expected"),
+    [(T1, True), (T2, True), (T3, False), (True, False)],
+)
+def test_subclass_validator(x: Any, expected: bool) -> None:
+    validator = Loader._is_subclass_validator(T1)
+    r = validator(x)
+    assert r is expected

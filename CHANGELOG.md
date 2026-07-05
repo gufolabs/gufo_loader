@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 To see unreleased changes, please see the [CHANGELOG on the master branch](https://github.com/gufolabs/gufo_loader/blob/master/CHANGELOG.md) guide.
 
+## [Unreleased]
+
+### Added
+
+* Additional checks in subclass schema to increase resilience.
+
 ## 2.0.0 - 2026-06-29
 
 ### Breaking Changes

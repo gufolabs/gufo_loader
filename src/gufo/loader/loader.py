@@ -148,7 +148,7 @@ class Loader(Generic[T]):
         """
 
         def inner(x: Any) -> bool:  # noqa: ANN401
-            return issubclass(x, t)
+            return inspect.isclass(x) and issubclass(x, t)
 
         return inner
 
