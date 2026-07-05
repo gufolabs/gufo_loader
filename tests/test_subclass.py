@@ -5,6 +5,7 @@
 # ---------------------------------------------------------------------
 
 # Python modules
+from typing import Any
 
 # Third-party modules
 import pytest
