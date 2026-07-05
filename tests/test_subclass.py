@@ -55,7 +55,7 @@ class T3:
     ("x", "expected"),
     [(T1, True), (T2, True), (T3, False), (True, False)],
 )
-def test_subclass_validator(x: Any, expected: bool) -> None:
+def test_subclass_validator(x: Any, expected: bool) -> None:  # noqa:ANN401
     validator = Loader._is_subclass_validator(T1)
     r = validator(x)
     assert r is expected
