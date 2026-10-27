@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 To see unreleased changes, please see the [CHANGELOG on the master branch](https://github.com/gufolabs/gufo_loader/blob/master/CHANGELOG.md) guide.
 
+## [Unreleased]
+
+### Added
+
+* Python 3.15 support.
+
+### Removed
+
+* Python 3.10 support.
+
 ## 2.0.1 - 2026-07-06
 
 ### Added

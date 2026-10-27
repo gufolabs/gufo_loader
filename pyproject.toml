@@ -24,8 +24,8 @@ directory = "dist/coverage"
 # Exclude a variety of commonly ignored directories.
 exclude = [".git", "build", "dist"]
 line-length = 79
-# Assume Python 3.10
-target-version = "py310"
+# Assume Python 3.11
+target-version = "py311"
 # Always autofix, but never try to fix `F401` (unused imports).
 fix = true
 
@@ -108,11 +108,11 @@ authors = [{name = "Gufo Labs"}]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
-  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
   "Topic :: Software Development",
   "Topic :: Software Development :: Libraries",
   "Topic :: Software Development :: Libraries :: Python Modules",
@@ -138,7 +138,7 @@ keywords = [
 ]
 license = "BSD-3-Clause"
 name = "gufo_loader"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 
 [project.optional-dependencies]
 docs = [
