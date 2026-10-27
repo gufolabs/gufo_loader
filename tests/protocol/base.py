@@ -4,6 +4,7 @@
 # Copyright (C) 2022-23, Gufo Labs
 # ---------------------------------------------------------------------
 
+# Python modules
 from typing import Protocol, runtime_checkable
 
 

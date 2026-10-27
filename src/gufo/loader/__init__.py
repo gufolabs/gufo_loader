@@ -82,7 +82,6 @@ Attributes:
     __version__: Current version
 """
 
-# Gufo Loader modules
 from .loader import Loader
 from .resolver import ImportPathResolver
 

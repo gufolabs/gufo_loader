@@ -7,7 +7,7 @@
 # Third-party modules
 import pytest
 
-# Gufo Labs modules
+# Gufo Loader modules
 from gufo.loader import Loader
 
 from .singleton.base import BasePlugin

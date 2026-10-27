@@ -10,7 +10,7 @@ from collections.abc import Callable
 # Third-party modules
 import pytest
 
-# Gufo Labs modules
+# Gufo Loader modules
 from gufo.loader import ImportPathResolver
 from gufo.loader.resolver import _sentinel
 
