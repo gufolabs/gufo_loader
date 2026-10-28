@@ -82,6 +82,7 @@ max-complexity = 10
   "D103", # Missing docstring in public function
   "D104", # Missing docstring in public package
   "ANN101", # Missing type annotation for `self` in method
+  "I", # Isort
 ]
 "tests/*.py" = [
   "D100", # Missing docstring in public module
@@ -94,8 +95,15 @@ max-complexity = 10
   "PLR2004", # Magic value used in comparison, consider replacing {value} with a constant variable
   "PT011", # pytest.raises(ValueError)` is too broad, set the `match` parameter or use a more specific exception
 ]
+
 [tool.ruff.lint.isort]
 known-first-party = ["src"]
+
+[tool.ruff.lint.isort.import-heading]
+first-party = "Gufo Loader modules"
+future = "Future imports"
+standard-library = "Python modules"
+third-party = "Third-party modules"
 
 [tool.mypy]
 explicit_package_bases = true
