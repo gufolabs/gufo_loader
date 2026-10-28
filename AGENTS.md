@@ -1,7 +1,7 @@
 # Gufo Loader - Project Reference for Agents
 
 ## Overview
-**Gufo Loader** — generic Python class loader for robust plugin infrastructure. Part of [Gufo Stack](https://docs.gufolabs.com/) by Gufo Labs. Provides dict-like singleton API for late-loading plugins from one or many plugin packages. Supports three schemes: subclasses, singletons (instances), and protocols. Python >= 3.10. BSD-3-Clause.
+**Gufo Loader** — generic Python class loader for robust plugin infrastructure. Part of [Gufo Stack](https://docs.gufolabs.com/) by Gufo Labs. Provides dict-like singleton API for late-loading plugins from one or many plugin packages. Supports three schemes: subclasses, singletons (instances), and protocols. Python >= 3.11. BSD-3-Clause.
 
 ## Architecture
 
@@ -110,7 +110,13 @@ gufo_loader/
 ```
 
 ## Development Conventions
-- Python 3.10+ target, tested on 3.10–3.14 (no mypy typing issues).
+- **Run development commands only through `./scripts/run-dev`.** This includes tests,
+  linters, formatters, type checkers, build and docs commands, dependency installation,
+  and project scripts. The wrapper executes commands in the repository's running
+  devcontainer. Do not run these commands directly on the host or from a local virtual
+  environment. Examples: `./scripts/run-dev pytest -v tests/` and
+  `./scripts/run-dev ruff check -q examples/ src/ tests/`.
+- Python 3.11+ target, tested on 3.11–3.15 (no mypy typing issues).
 - Max 3 files in `src/gufo/loader/`: loader.py, resolver.py, __init__.py. No more submodules unless clearly needed; new public API goes into a dedicated file <64 lines.
 - Thread-safe via RLock on `_get_item()` (caching path). RLock allows reentrant locks for recursive plugin deps without deadlock. No global state beyond instance attributes.
 - Lazy loading — plugins loaded/instantiated on first `get(name)` call, cached in `self._classes`.
@@ -120,39 +126,39 @@ gufo_loader/
 
 ## Build, Test, Lint
 
-### Virtual environment setup
+### Devcontainer setup
 ```bash
-cd gufo_loader
-python -m venv .venv && source .venv/bin/activate
-pip install -e ".[test,lint]"  # installs dev deps too
-export PYTHONPATH=src  # or set in .env/IDE config
+./scripts/run-dev pip install -e ".[test,lint]"  # installs dev deps in the container
 ```
+
+Do not create or use a host virtual environment for project development. Run all
+development commands through `./scripts/run-dev` so they execute in the container.
 
 ### Devcontainer (recommended)
 Open in VSCode with Remote Containers extension. `Dockerfile target=dev` provides full env. PYTHONPATH auto-set to src.
 
 ### Linting & formatting (in this order)
 ```bash
-ruff format   # autofix (via pyproject [tool.ruff] config)
-ruff check -q  # noqa: ANN401 tolerated, __init__.py ignores E402
-mypy src/    # strict mode, explicit_package_bases=true
+./scripts/run-dev ruff format examples/ src/ tests/
+./scripts/run-dev ruff check -q examples/ src/ tests/
+./scripts/run-dev mypy src/
 ```
 
 Ruff lints `examples/ src/ tests/` (see workflows). MyPy uses strict mode with `warn_unused_ignores=false`. isort configured for known-first-party: `["src"]`. Docstrings use google convention, double quotes. Ruff ignores D203/D212/D107; test files ignore D1xx/S101/S603/PLR2004.
 
 ### Testing
 ```bash
-pytest -v tests/                # standard run
-pytest -v --cov --cov-branch    # coverage report
-mypy src/                       # type checking (required for CI)
-ruff format --check examples/ src/ tests/  # formatting check
-ruff check -q examples/ src/ tests/       # linting
+./scripts/run-dev pytest -v tests/                # standard run
+./scripts/run-dev pytest -v --cov --cov-branch    # coverage report
+./scripts/run-dev mypy src/                       # type checking (required for CI)
+./scripts/run-dev ruff format --check examples/ src/ tests/  # formatting check
+./scripts/run-dev ruff check -q examples/ src/ tests/       # linting
 ```
 
 ### Building package
 ```bash
-pip install --upgrade build
-python -m build --sdist --wheel
+./scripts/run-dev pip install --upgrade build
+./scripts/run-dev python -m build --sdist --wheel
 # outputs to dist/. Not tracked in git.
 ```
 
