@@ -211,15 +211,15 @@ class Loader(Generic[T]):
         Note:
             Internal method. Must not be used directly.
         """
-        for b in bases:
+        for base in bases:
             try:
-                m = __import__(b, {}, {}, "*")
-                paths = getattr(m, "__path__", None)
+                module = importlib.import_module(base)
+                paths = getattr(module, "__path__", None)
                 if paths:
                     yield paths[0]
             except ModuleNotFoundError as e:
                 if self._strict:
-                    msg = f"Module '{b}' is not found"
+                    msg = f"Module '{base}' is not found"
                     raise RuntimeError(msg) from e
 
     def __getitem__(self, name: str) -> T:
