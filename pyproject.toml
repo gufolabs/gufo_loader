@@ -178,6 +178,7 @@ file = "README.md"
 [project.urls]
 "Bug Tracker" = "https://github.com/gufolabs/gufo_loader/issues"
 Changelog = "https://github.com/gufolabs/gufo_loader/blob/master/CHANGELOG.md"
+Discord = "https://discord.gg/amRVXFqbD"
 Documentation = "https://docs.gufolabs.com/gufo_loader/"
 Homepage = "https://github.com/gufolabs/gufo_loader/"
 "Source Code" = "https://github.com/gufolabs/gufo_loader/"
