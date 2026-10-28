@@ -82,8 +82,8 @@ Attributes:
     __version__: Current version
 """
 
-from .loader import Loader
+from .loader import Loader, ModulePolicy
 from .resolver import ImportPathResolver
 
 __version__: str = "2.0.1"
-__all__ = ["ImportPathResolver", "Loader"]
+__all__ = ["ImportPathResolver", "Loader", "ModulePolicy"]

@@ -18,6 +18,7 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 * `Loader.iter_members()` method to support custom member discovery.
 * Support loading plugins by a specific module attribute via the attribute parameter.
 * `scripts/run-dev` wrapper to run commands in the devcontainer.
+* `Loader.module_policy` option to allow or disallow loading plugins defined in other modules.
 
 ### Removed
 

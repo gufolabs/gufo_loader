@@ -10,6 +10,7 @@
 import importlib
 import inspect
 from collections.abc import Callable, Iterable, Iterator
+from enum import Enum
 from pkgutil import iter_modules
 from threading import RLock
 from types import ModuleType
@@ -17,6 +18,18 @@ from typing import Any, Generic, TypeVar, cast, get_args, get_origin, overload
 
 T = TypeVar("T")
 _SENTINEL = object()
+
+
+class ModulePolicy(Enum):
+    """Define policies for matching members to their origin module.
+
+    Attributes:
+        STRICT: Only accept members defined in the module being inspected.
+        RELAXED: Allow members imported from other modules.
+    """
+
+    STRICT = "strict"
+    RELAXED = "relaxed"
 
 
 class Loader(Generic[T]):
@@ -30,6 +43,11 @@ class Loader(Generic[T]):
             only this attribute is considered.
         strict: Ignore missed plugin packages if set to False, Fail otherwise.
         exclude: Iterable of names to be excluded from plugins lists.
+        module_policy: Policy for matching members to their origin module.
+            Defaults to `ModulePolicy.STRICT`, which only accepts members
+            defined in the inspected module.
+            `ModulePolicy.RELAXED` also allows members
+            imported from other modules.
 
     Note:
         `base` and `bases` parameters are mutually exclusive.
@@ -37,19 +55,21 @@ class Loader(Generic[T]):
 
     """
 
-    def __init__(
+    def __init__(  # noqa: PLR0913
         self,
         base: str | None = None,
         bases: Iterable[str] | None = None,
         attribute: str | None = None,
         strict: bool = False,
         exclude: Iterable[str] | None = None,
+        module_policy: ModulePolicy = ModulePolicy.STRICT,
     ) -> None:
         # Pass to generic
         super().__init__()
         self._attribute = attribute
         self._strict = strict
         self._validate: Callable[[Any], bool] | None = None
+        self._module_policy = module_policy
         # Check settinngs
         if base is not None and bases is None:
             self._bases = [base]
@@ -336,7 +356,8 @@ class Loader(Generic[T]):
         for _name, member in self.iter_members(module):
             # Check member is originated from same module
             if (
-                hasattr(member, "__module__")
+                self._module_policy is ModulePolicy.STRICT
+                and hasattr(member, "__module__")
                 and member.__module__ != module.__name__
             ):
                 continue
