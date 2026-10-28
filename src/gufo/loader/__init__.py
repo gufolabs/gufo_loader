@@ -85,5 +85,5 @@ Attributes:
 from .loader import Loader, ModulePolicy
 from .resolver import ImportPathResolver
 
-__version__: str = "2.0.1"
+__version__: str = "3.0.0"
 __all__ = ["ImportPathResolver", "Loader", "ModulePolicy"]
