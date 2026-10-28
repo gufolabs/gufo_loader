@@ -41,7 +41,7 @@ class Loader(Generic[T]):
     ) -> None:
         # Pass to generic
         super().__init__()
-        self.strict = strict
+        self._strict = strict
         self._validate: Callable[[Any], bool] | None = None
         # Check settinngs
         if base is not None and bases is None:
@@ -191,7 +191,7 @@ class Loader(Generic[T]):
                 if paths:
                     yield paths[0]
             except ModuleNotFoundError as e:
-                if self.strict:
+                if self._strict:
                     msg = f"Module '{b}' is not found"
                     raise RuntimeError(msg) from e
 
