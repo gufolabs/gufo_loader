@@ -47,7 +47,9 @@ def test_getitem(name: str, expected_name: str, loader: LoaderType) -> None:
         (ModulePolicy.RELAXED, "c"),
     ],
 )
-def test_module_policy(module_policy: ModulePolicy, expected_name: str | None) -> None:
+def test_module_policy(
+    module_policy: ModulePolicy, expected_name: str | None
+) -> None:
     loader = Loader[type[BasePlugin]](
         base="tests.subclass.secondary",
         module_policy=module_policy,
