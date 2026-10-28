@@ -12,6 +12,7 @@ import pytest
 
 # Gufo Loader modules
 from gufo.loader import Loader
+from gufo.loader.loader import ModulePolicy
 
 from .subclass.base import BasePlugin
 
@@ -37,6 +38,28 @@ def test_getitem(name: str, expected_name: str, loader: LoaderType) -> None:
     assert issubclass(kls, BasePlugin)
     item = kls()
     assert item.get_name() == expected_name
+
+
+@pytest.mark.parametrize(
+    ("module_policy", "expected_name"),
+    [
+        (ModulePolicy.STRICT, None),
+        (ModulePolicy.RELAXED, "c"),
+    ],
+)
+def test_module_policy(module_policy: ModulePolicy, expected_name: str | None) -> None:
+    loader = Loader[type[BasePlugin]](
+        base="tests.subclass.secondary",
+        module_policy=module_policy,
+    )
+
+    kls = loader.get("d")
+
+    if expected_name is None:
+        assert kls is None
+    else:
+        assert kls is not None
+        assert kls().get_name() == expected_name
 
 
 class T1:
