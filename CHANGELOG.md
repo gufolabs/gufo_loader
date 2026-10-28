@@ -20,6 +20,10 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 
 * Python 3.10 support.
 
+## Changed
+
+* Loader's `strict` attribute made internal.
+
 ## 2.0.1 - 2026-07-06
 
 ### Added
