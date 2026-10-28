@@ -16,6 +16,7 @@ from types import ModuleType
 from typing import Any, Generic, TypeVar, cast, get_args, get_origin, overload
 
 T = TypeVar("T")
+_SENTINEL = object()
 
 
 class Loader(Generic[T]):
@@ -25,6 +26,8 @@ class Loader(Generic[T]):
     Args:
         base: Plugins package name.
         bases: Iterable of plugin package names.
+        attribute: Name of the module attribute to load. If specified,
+            only this attribute is considered.
         strict: Ignore missed plugin packages if set to False, Fail otherwise.
         exclude: Iterable of names to be excluded from plugins lists.
 
@@ -38,11 +41,13 @@ class Loader(Generic[T]):
         self,
         base: str | None = None,
         bases: Iterable[str] | None = None,
+        attribute: str | None = None,
         strict: bool = False,
         exclude: Iterable[str] | None = None,
     ) -> None:
         # Pass to generic
         super().__init__()
+        self._attribute = attribute
         self._strict = strict
         self._validate: Callable[[Any], bool] | None = None
         # Check settinngs
@@ -298,6 +303,13 @@ class Loader(Generic[T]):
         Yields:
             Tuples containing member names and their corresponding objects.
         """
+        # Attribute discovery
+        if self._attribute is not None:
+            member = getattr(module, self._attribute, _SENTINEL)
+            if member is not _SENTINEL:
+                yield self._attribute, member
+            return
+        # Discover module members
         for name, member in inspect.getmembers(module):
             if name.startswith("__") and name.endswith("__"):
                 continue
