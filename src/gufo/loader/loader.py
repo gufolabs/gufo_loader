@@ -7,10 +7,12 @@
 """Loader implementation."""
 
 # Python modules
+import importlib
 import inspect
 from collections.abc import Callable, Iterable, Iterator
 from pkgutil import iter_modules
 from threading import RLock
+from types import ModuleType
 from typing import Any, Generic, TypeVar, cast, get_args, get_origin, overload
 
 T = TypeVar("T")
@@ -285,6 +287,22 @@ class Loader(Generic[T]):
                     return kls
         return None
 
+    def iter_members(self, module: ModuleType) -> Iterable[tuple[str, object]]:
+        """Iterate over members of a module.
+
+        Override this method to implement custom member discovery or filtering.
+
+        Args:
+            module: Module to inspect.
+
+        Yields:
+            Tuples containing member names and their corresponding objects.
+        """
+        for name, member in inspect.getmembers(module):
+            if name.startswith("__") and name.endswith("__"):
+                continue
+            yield name, member
+
     def _find_item(self, name: str) -> T | None:
         """
         Get plugin item from module `name`.
@@ -298,23 +316,23 @@ class Loader(Generic[T]):
         Note:
             Internal method. Must not be used directly.
         """
-        is_valid = self._get_validator()
         try:
-            module = __import__(name, {}, {}, "*")
-            for _, member in inspect.getmembers(module):
-                # Check member is originated from same module
-                if (
-                    hasattr(member, "__module__")
-                    and member.__module__ != module.__name__
-                ):
-                    continue
-                # Check member is valid
-                if not is_valid(member):
-                    continue
-                # Cast member to proper type
-                return cast(T, member)
+            module = importlib.import_module(name)
         except ImportError:
-            pass
+            return None
+        is_valid = self._get_validator()
+        for _name, member in self.iter_members(module):
+            # Check member is originated from same module
+            if (
+                hasattr(member, "__module__")
+                and member.__module__ != module.__name__
+            ):
+                continue
+            # Check member is valid
+            if not is_valid(member):
+                continue
+            # Cast member to proper type
+            return cast(T, member)
         return None
 
     def keys(self) -> Iterable[str]:
