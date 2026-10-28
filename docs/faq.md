@@ -69,6 +69,34 @@ Not through the public API. Gufo Loader was designed for singleton persistence w
 
 Yes. You can dynamically discover entry points within your application code and pass them into the `bases` tuple exactly as you would a regular package path. Gufo Loader's plugin discovery (`pkgutil.iter_modules`) works identically for both hardcoded paths and dynamically discovered ones.
 
+### Can I load a plugin by a specific module attribute?
+
+Yes. By default, Gufo Loader inspects module members and selects the first object matching the configured plugin type. If you know the exact attribute that contains the plugin, use the `attribute` parameter:
+
+```python
+loader = Loader[MyProtocol](
+    base="my.plugins",
+    attribute="plugin",
+)
+```
+
+Only the specified attribute is considered. This is useful when a module exposes multiple objects or when the plugin is registered under a known name.
+
+### How does Gufo Loader handle members imported from other modules?
+
+By default, Gufo Loader uses `ModulePolicy.STRICT` and only considers objects whose `__module__` attribute matches the module being inspected. This prevents imported classes from being mistaken for plugins defined in that module.
+
+Set `module_policy=ModulePolicy.RELAXED` to allow matching objects imported from other modules:
+
+```python
+loader = Loader[type[BasePlugin]](
+    base="my.plugins",
+    module_policy=ModulePolicy.RELAXED,
+)
+```
+
+Use `RELAXED` when a plugin module intentionally re-exports an implementation defined elsewhere.
+
 ## Migration
 
 ### How do I migrate from Pluggy?
