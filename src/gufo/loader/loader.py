@@ -55,7 +55,7 @@ class Loader(Generic[T]):
 
     """
 
-    def __init__(
+    def __init__(  # noqa: PLR0913
         self,
         base: str | None = None,
         bases: Iterable[str] | None = None,
