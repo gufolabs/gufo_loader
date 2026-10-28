@@ -15,6 +15,7 @@ To see unreleased changes, please see the [CHANGELOG on the master branch](https
 ### Added
 
 * Python 3.15 support.
+* `Loader.iter_members()` method to support custom member discovery.
 
 ### Removed
 
