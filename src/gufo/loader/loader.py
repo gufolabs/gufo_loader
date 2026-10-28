@@ -217,7 +217,7 @@ class Loader(Generic[T]):
                 paths = getattr(module, "__path__", None)
                 if paths:
                     yield paths[0]
-            except ModuleNotFoundError as e:
+            except (ModuleNotFoundError, TypeError) as e:
                 if self._strict:
                     msg = f"Module '{base}' is not found"
                     raise RuntimeError(msg) from e
